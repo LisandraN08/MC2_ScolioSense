@@ -9,12 +9,18 @@
 /* Begin PBXBuildFile section */
 		10D23C9A2BFD815C00A7C338 /* MC2_ScolioSenseApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 10D23C992BFD815C00A7C338 /* MC2_ScolioSenseApp.swift */; };
 		10D23C9C2BFD815C00A7C338 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 10D23C9B2BFD815C00A7C338 /* ContentView.swift */; };
-		10D23C9E2BFD815C00A7C338 /* Item.swift in Sources */ = {isa = PBXBuildFile; fileRef = 10D23C9D2BFD815C00A7C338 /* Item.swift */; };
 		10D23CA02BFD815E00A7C338 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 10D23C9F2BFD815E00A7C338 /* Assets.xcassets */; };
 		10D23CA32BFD815E00A7C338 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 10D23CA22BFD815E00A7C338 /* Preview Assets.xcassets */; };
 		10D23CAD2BFD815E00A7C338 /* MC2_ScolioSenseTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 10D23CAC2BFD815E00A7C338 /* MC2_ScolioSenseTests.swift */; };
 		10D23CB72BFD815E00A7C338 /* MC2_ScolioSenseUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 10D23CB62BFD815E00A7C338 /* MC2_ScolioSenseUITests.swift */; };
 		10D23CB92BFD815E00A7C338 /* MC2_ScolioSenseUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 10D23CB82BFD815E00A7C338 /* MC2_ScolioSenseUITestsLaunchTests.swift */; };
+		1E31ACD32C081F34006CB94D /* datamodelTry.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1E31ACD22C081F34006CB94D /* datamodelTry.swift */; };
+		1E31ACD62C0B0622006CB94D /* scolioMeterView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1E31ACD52C0B0622006CB94D /* scolioMeterView.swift */; };
+		1E31ACDB2C0B0974006CB94D /* textHeading.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1E31ACDA2C0B0974006CB94D /* textHeading.swift */; };
+		1E31ACDD2C0B09C5006CB94D /* colorConverter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1E31ACDC2C0B09C5006CB94D /* colorConverter.swift */; };
+		1E31ACDF2C0B0D96006CB94D /* button.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1E31ACDE2C0B0D96006CB94D /* button.swift */; };
+		1E31ACE12C0B6892006CB94D /* CustomAlert.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1E31ACE02C0B6892006CB94D /* CustomAlert.swift */; };
+		1E389E352BFD8818008CE8C7 /* MotionManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1E389E342BFD8818008CE8C7 /* MotionManager.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -38,7 +44,6 @@
 		10D23C962BFD815C00A7C338 /* MC2_ScolioSense.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = MC2_ScolioSense.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		10D23C992BFD815C00A7C338 /* MC2_ScolioSenseApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MC2_ScolioSenseApp.swift; sourceTree = "<group>"; };
 		10D23C9B2BFD815C00A7C338 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
-		10D23C9D2BFD815C00A7C338 /* Item.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Item.swift; sourceTree = "<group>"; };
 		10D23C9F2BFD815E00A7C338 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		10D23CA22BFD815E00A7C338 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
 		10D23CA82BFD815E00A7C338 /* MC2_ScolioSenseTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = MC2_ScolioSenseTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -46,6 +51,13 @@
 		10D23CB22BFD815E00A7C338 /* MC2_ScolioSenseUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = MC2_ScolioSenseUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		10D23CB62BFD815E00A7C338 /* MC2_ScolioSenseUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MC2_ScolioSenseUITests.swift; sourceTree = "<group>"; };
 		10D23CB82BFD815E00A7C338 /* MC2_ScolioSenseUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MC2_ScolioSenseUITestsLaunchTests.swift; sourceTree = "<group>"; };
+		1E31ACD22C081F34006CB94D /* datamodelTry.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = datamodelTry.swift; sourceTree = "<group>"; };
+		1E31ACD52C0B0622006CB94D /* scolioMeterView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = scolioMeterView.swift; sourceTree = "<group>"; };
+		1E31ACDA2C0B0974006CB94D /* textHeading.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = textHeading.swift; sourceTree = "<group>"; };
+		1E31ACDC2C0B09C5006CB94D /* colorConverter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = colorConverter.swift; sourceTree = "<group>"; };
+		1E31ACDE2C0B0D96006CB94D /* button.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = button.swift; sourceTree = "<group>"; };
+		1E31ACE02C0B6892006CB94D /* CustomAlert.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomAlert.swift; sourceTree = "<group>"; };
+		1E389E342BFD8818008CE8C7 /* MotionManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MotionManager.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -96,9 +108,11 @@
 		10D23C982BFD815C00A7C338 /* MC2_ScolioSense */ = {
 			isa = PBXGroup;
 			children = (
+				1E31ACD92C0B092F006CB94D /* Components */,
+				1E31ACD42C0B0608006CB94D /* Scoliometer */,
+				1E31ACD12C081F23006CB94D /* model */,
 				10D23C992BFD815C00A7C338 /* MC2_ScolioSenseApp.swift */,
 				10D23C9B2BFD815C00A7C338 /* ContentView.swift */,
-				10D23C9D2BFD815C00A7C338 /* Item.swift */,
 				10D23C9F2BFD815E00A7C338 /* Assets.xcassets */,
 				10D23CA12BFD815E00A7C338 /* Preview Content */,
 			);
@@ -128,6 +142,34 @@
 				10D23CB82BFD815E00A7C338 /* MC2_ScolioSenseUITestsLaunchTests.swift */,
 			);
 			path = MC2_ScolioSenseUITests;
+			sourceTree = "<group>";
+		};
+		1E31ACD12C081F23006CB94D /* model */ = {
+			isa = PBXGroup;
+			children = (
+				1E31ACD22C081F34006CB94D /* datamodelTry.swift */,
+			);
+			path = model;
+			sourceTree = "<group>";
+		};
+		1E31ACD42C0B0608006CB94D /* Scoliometer */ = {
+			isa = PBXGroup;
+			children = (
+				1E389E342BFD8818008CE8C7 /* MotionManager.swift */,
+				1E31ACD52C0B0622006CB94D /* scolioMeterView.swift */,
+				1E31ACE02C0B6892006CB94D /* CustomAlert.swift */,
+			);
+			path = Scoliometer;
+			sourceTree = "<group>";
+		};
+		1E31ACD92C0B092F006CB94D /* Components */ = {
+			isa = PBXGroup;
+			children = (
+				1E31ACDA2C0B0974006CB94D /* textHeading.swift */,
+				1E31ACDC2C0B09C5006CB94D /* colorConverter.swift */,
+				1E31ACDE2C0B0D96006CB94D /* button.swift */,
+			);
+			path = Components;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -261,8 +303,14 @@
 			buildActionMask = 2147483647;
 			files = (
 				10D23C9C2BFD815C00A7C338 /* ContentView.swift in Sources */,
-				10D23C9E2BFD815C00A7C338 /* Item.swift in Sources */,
+				1E31ACD62C0B0622006CB94D /* scolioMeterView.swift in Sources */,
+				1E31ACDF2C0B0D96006CB94D /* button.swift in Sources */,
+				1E31ACE12C0B6892006CB94D /* CustomAlert.swift in Sources */,
+				1E389E352BFD8818008CE8C7 /* MotionManager.swift in Sources */,
+				1E31ACD32C081F34006CB94D /* datamodelTry.swift in Sources */,
 				10D23C9A2BFD815C00A7C338 /* MC2_ScolioSenseApp.swift in Sources */,
+				1E31ACDD2C0B09C5006CB94D /* colorConverter.swift in Sources */,
+				1E31ACDB2C0B0974006CB94D /* textHeading.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -426,14 +474,14 @@
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_ASSET_PATHS = "\"MC2_ScolioSense/Preview Content\"";
-				DEVELOPMENT_TEAM = NLFHS29F76;
+				DEVELOPMENT_TEAM = V82QRJ28YB;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
-				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
-				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				INFOPLIST_KEY_UISupportedInterfaceOrientations = UIInterfaceOrientationPortrait;
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown";
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -455,14 +503,14 @@
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_ASSET_PATHS = "\"MC2_ScolioSense/Preview Content\"";
-				DEVELOPMENT_TEAM = NLFHS29F76;
+				DEVELOPMENT_TEAM = V82QRJ28YB;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
-				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
-				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				INFOPLIST_KEY_UISupportedInterfaceOrientations = UIInterfaceOrientationPortrait;
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown";
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",

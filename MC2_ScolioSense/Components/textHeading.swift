@@ -8,11 +8,21 @@
 import SwiftUI
 
 struct textHeading: View {
+    let text: String
+        
+        init(text: String) {
+            self.text = text
+        }
+    
     var body: some View {
-        Text(/*@START_MENU_TOKEN@*/"Hello, World!"/*@END_MENU_TOKEN@*/)
-    }
+        Text(text)
+                 .font(.custom("SFCompactRounded-Bold", size: 40))
+                 .bold()
+                 .fontWeight(.black)
+                 .foregroundColor(Color(hex:"000000", transparency: 0.9))
+                 .lineSpacing(20)}
 }
 
 #Preview {
-    textHeading()
+    textHeading(text: "balba")
 }

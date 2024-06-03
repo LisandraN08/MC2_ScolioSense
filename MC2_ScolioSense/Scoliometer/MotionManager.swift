@@ -11,9 +11,10 @@ class MotionManager: ObservableObject {
     
     private var motionManager: CMMotionManager
     private var filteredPitch: Double = 0.0
-    private let filterFactor = 0.1 // Adjust this factor to control smoothing
+    private let filterFactor = 0.1
 
     @Published var slopeDegrees: Double = 0.0
+    var isPaused: Bool = false
 
     init() {
         motionManager = CMMotionManager()
@@ -21,7 +22,7 @@ class MotionManager: ObservableObject {
     }
 
     public func startDeviceMotionUpdates() {
-        motionManager.deviceMotionUpdateInterval = 1.0 / 60.0 // Update 60 times per second
+        motionManager.deviceMotionUpdateInterval = 1.0 / 60.0
 
         motionManager.startDeviceMotionUpdates(to: OperationQueue.main) { [weak self] (motion, error) in
             if let motion = motion {
@@ -33,8 +34,9 @@ class MotionManager: ObservableObject {
     }
 
     private func updateSlopeDegrees(from attitude: CMAttitude) {
+        guard !isPaused else { return }
         let pitch = attitude.pitch.radiansToDegrees
-        // Apply low-pass filter
+
         filteredPitch = filterFactor * pitch + (1 - filterFactor) * filteredPitch
         self.slopeDegrees = filteredPitch
     }
@@ -49,5 +51,6 @@ extension Double {
         return self * 180 / .pi
     }
 }
+
 
 
