@@ -21,6 +21,8 @@
 		1E31ACDF2C0B0D96006CB94D /* button.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1E31ACDE2C0B0D96006CB94D /* button.swift */; };
 		1E31ACE12C0B6892006CB94D /* CustomAlert.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1E31ACE02C0B6892006CB94D /* CustomAlert.swift */; };
 		1E389E352BFD8818008CE8C7 /* MotionManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1E389E342BFD8818008CE8C7 /* MotionManager.swift */; };
+		EB72DC5E2C0D7696000E63A6 /* XRayScoliosis.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB72DC5D2C0D7696000E63A6 /* XRayScoliosis.swift */; };
+		EB72DC622C0D772D000E63A6 /* CobbsLine.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB72DC612C0D772D000E63A6 /* CobbsLine.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -58,6 +60,8 @@
 		1E31ACDE2C0B0D96006CB94D /* button.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = button.swift; sourceTree = "<group>"; };
 		1E31ACE02C0B6892006CB94D /* CustomAlert.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomAlert.swift; sourceTree = "<group>"; };
 		1E389E342BFD8818008CE8C7 /* MotionManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MotionManager.swift; sourceTree = "<group>"; };
+		EB72DC5D2C0D7696000E63A6 /* XRayScoliosis.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = XRayScoliosis.swift; sourceTree = "<group>"; };
+		EB72DC612C0D772D000E63A6 /* CobbsLine.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CobbsLine.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -108,6 +112,7 @@
 		10D23C982BFD815C00A7C338 /* MC2_ScolioSense */ = {
 			isa = PBXGroup;
 			children = (
+				EB72DC5C2C0D765A000E63A6 /* XrayScoliosisMeter */,
 				1E31ACD92C0B092F006CB94D /* Components */,
 				1E31ACD42C0B0608006CB94D /* Scoliometer */,
 				1E31ACD12C081F23006CB94D /* model */,
@@ -170,6 +175,23 @@
 				1E31ACDE2C0B0D96006CB94D /* button.swift */,
 			);
 			path = Components;
+			sourceTree = "<group>";
+		};
+		EB72DC5C2C0D765A000E63A6 /* XrayScoliosisMeter */ = {
+			isa = PBXGroup;
+			children = (
+				EB72DC5D2C0D7696000E63A6 /* XRayScoliosis.swift */,
+				EB72DC602C0D7707000E63A6 /* Cobb'sLine */,
+			);
+			path = XrayScoliosisMeter;
+			sourceTree = "<group>";
+		};
+		EB72DC602C0D7707000E63A6 /* Cobb'sLine */ = {
+			isa = PBXGroup;
+			children = (
+				EB72DC612C0D772D000E63A6 /* CobbsLine.swift */,
+			);
+			path = "Cobb'sLine";
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -304,8 +326,10 @@
 			files = (
 				10D23C9C2BFD815C00A7C338 /* ContentView.swift in Sources */,
 				1E31ACD62C0B0622006CB94D /* scolioMeterView.swift in Sources */,
+				EB72DC622C0D772D000E63A6 /* CobbsLine.swift in Sources */,
 				1E31ACDF2C0B0D96006CB94D /* button.swift in Sources */,
 				1E31ACE12C0B6892006CB94D /* CustomAlert.swift in Sources */,
+				EB72DC5E2C0D7696000E63A6 /* XRayScoliosis.swift in Sources */,
 				1E389E352BFD8818008CE8C7 /* MotionManager.swift in Sources */,
 				1E31ACD32C081F34006CB94D /* datamodelTry.swift in Sources */,
 				10D23C9A2BFD815C00A7C338 /* MC2_ScolioSenseApp.swift in Sources */,
