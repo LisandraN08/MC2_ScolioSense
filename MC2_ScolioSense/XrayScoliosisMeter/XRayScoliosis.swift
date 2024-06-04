@@ -67,7 +67,7 @@ struct XRayScoliosis: View {
         }
     }
 
-struct ContentView_Previews: PreviewProvider {
+struct XRayScoliosis_Previews: PreviewProvider {
     static var previews: some View {
         XRayScoliosis()
     }
