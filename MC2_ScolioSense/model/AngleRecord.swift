@@ -6,3 +6,9 @@
 //
 
 import Foundation
+
+struct AngleRecord: Identifiable, Codable {
+    var id = UUID()
+    var angle: Double
+    var date: Date
+}

@@ -24,7 +24,7 @@ struct MC2_ScolioSenseApp: App {
 
     var body: some Scene {
         WindowGroup {
-            ContentView()
+            mainView()
         }
         .modelContainer(sharedModelContainer)
     }

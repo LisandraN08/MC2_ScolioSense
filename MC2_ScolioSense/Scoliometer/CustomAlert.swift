@@ -22,23 +22,8 @@ struct CustomAlert: View {
                 Text(title)
                     .font(.title)
                     .bold()
-                Text(message)
-                    .font(.body)
-                    .multilineTextAlignment(.center)
-                Button(action: {
-                    buttonAction()
-                }) {
-                    Text(buttonText)
-                        .font(.headline)
-                        .foregroundColor(colorScheme == .dark ? Color.black : Color.white)
-                        .padding()
-                        .frame(maxWidth: .infinity)
-                        .background(colorScheme == .dark ? Color.white : Color.black)
-                        .cornerRadius(10)
-                }
-                .padding(.horizontal, 20)
             }
-            .frame(width: 300)
+            .frame(width: 300, height:79)
             .padding()
             .background(Color(hex: "BCE0F7", transparency: 0.8))
             .cornerRadius(20)

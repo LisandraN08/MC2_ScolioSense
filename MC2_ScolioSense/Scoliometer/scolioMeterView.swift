@@ -10,16 +10,20 @@ struct scolioMeterView: View {
     @StateObject private var motionDetector = MotionManager()
     @State private var isPitchPaused = false
     @State private var showAlert = false
-
+    var onSave: ((AngleRecord) -> Void)?
 
     var body: some View {
         ZStack {
             VStack (spacing: 120) {
                 HStack {
                     Spacer()
-                    button(text: isPitchPaused ? "START" : "HOLD", width: 146, height: 49, font: 22, bgColor: isPitchPaused ? "CAE5CA" : "fdc9c9", bgTransparency: 1.0, fontColor: "000000", fontTransparency: 0.7, cornerRadius: 20) {
-                        isPitchPaused.toggle()
-                        motionDetector.isPaused = isPitchPaused
+                    button(text: "SUBMIT", width: 146, height: 49, font: 22, bgColor: isPitchPaused ? "BCE0F7" : "BCE0F7", bgTransparency: 1.0, fontColor: "000000", fontTransparency: 0.7, cornerRadius: 20) {
+                        saveRecord()
+
+                        showAlert = true
+                        DispatchQueue.main.asyncAfter(deadline: .now() + 1) {
+                            showAlert = false
+                        }
                     }.rotationEffect(.degrees(-90))
                 }.offset(x: 50)
                 
@@ -38,7 +42,7 @@ struct scolioMeterView: View {
                             ZStack {
                                 Ellipse()
                                     .frame(width: 134, height: 200)
-                                    .foregroundColor(Color(hex: "BCE0F7", transparency: 0.9))
+                                    .foregroundColor(Color(hex: "BCE0F7", transparency: 0.2))
                                 HStack(spacing: -40) {
                                     Text("Place spine")
                                         .rotationEffect(.degrees(-90))
@@ -52,14 +56,15 @@ struct scolioMeterView: View {
                 
                 HStack {
                     Spacer()
-                    button(text: "SUBMIT", width: 146, height: 49, font: 22, bgColor: "BCE0F7", bgTransparency: 1.0, fontColor: "000000", fontTransparency: 0.7, cornerRadius: 20)
-                    {
+                    button(text: "XSUBMIT", width: 146, height: 49, font: 22, bgColor: "BCE0F7", bgTransparency: 1.0, fontColor: "000000", fontTransparency: 0.7, cornerRadius: 20) {
                         showAlert = true
+                        DispatchQueue.main.asyncAfter(deadline: .now() + 1) {
+                            showAlert = false
+                        }
                     }
                         .rotationEffect(.degrees(-90))
                         .offset(x: 50)
-                        .opacity(isPitchPaused ? 1.0:0.0)
-                  
+                        .opacity(0.0)
                 }
             }
             .padding(30)
@@ -73,42 +78,46 @@ struct scolioMeterView: View {
                     .offset(y: calculateOffset())
                     .animation(.easeInOut(duration: 0.5), value: motionDetector.slopeDegrees)
             }
-            
-            VStack {
-                Spacer()
-                HStack {
-                    Image(systemName: "chevron.left")
-                        .resizable()
-                        .frame(width: 20, height: 20)
-                        .rotationEffect(.degrees(-90))
-                    Spacer()
-                }.padding(.leading, 20)
-            }.padding()
-            if showAlert {
-                CustomAlert(title: "Data Saved", message: "Your data has been stored", buttonText: "OK") {
-                    showAlert = false
-                }.rotationEffect(.degrees(-90))
 
-                
+            if showAlert {
+                HStack {
+                    CustomAlert(title: "Angle Saved", message: "", buttonText: "") {
+                        showAlert = false
+                    }
+                    .rotationEffect(.degrees(-90))
+                }
+                .transition(.opacity)
+                .animation(.easeInOut, value: showAlert)
             }
         }
-
         .onAppear {
             motionDetector.startDeviceMotionUpdates()
         }
     }
+
+    private func saveRecord() {
+        let newRecord = AngleRecord(angle: motionDetector.slopeDegrees, date: Date())
+        RecordManager.shared.saveRecord(newRecord)
+        onSave?(newRecord)
+    }
+    
     private func calculateOffset() -> CGFloat {
         let baseOffset: CGFloat = 30
-
-            let maxOffset: CGFloat = 280
-            let offset = CGFloat(motionDetector.slopeDegrees) * maxOffset / 90.0
-            return offset
-        }
-
+        let maxOffset: CGFloat = 280
+        let offset = CGFloat(motionDetector.slopeDegrees) * maxOffset / 90.0
+        return offset
+    }
 }
 
+private let dateFormatter: DateFormatter = {
+    let formatter = DateFormatter()
+    formatter.dateStyle = .medium
+    formatter.timeStyle = .medium
+    return formatter
+}()
 
 #Preview {
     scolioMeterView()
 }
+
 
