@@ -28,16 +28,23 @@ struct scolioMeterView: View {
                 }.offset(x: 50)
                 
                 HStack {
-                    HStack(spacing:0) {
+                    VStack(spacing:0) {
                         Text("\(motionDetector.slopeDegrees, specifier: "%.f")°")
-                            .rotationEffect(.degrees(-90))
                             .font(.system(size: 70))
                             .fontWeight(.bold)
                             .foregroundColor(getSeverityColor(for: motionDetector.slopeDegrees))
+                            .frame(width:200)
+                            .offset(x:20,y:-50)
                         
-                      
+                        Text(getSeverityText(for: motionDetector.slopeDegrees))
+                            .fontWeight(.regular)
+                            .foregroundColor(getSeverityColor(for: motionDetector.slopeDegrees))
+                            .frame(width:200)
+                            .offset(x:20,y:-40)
 
                     }
+                    .rotationEffect(.degrees(-90))
+
                     
                     Spacer()
                     ZStack {
@@ -66,13 +73,7 @@ struct scolioMeterView: View {
 //                            showAlert = false
 //                        }
 //                    }
-                    HStack {
-                        Text(getSeverityText(for: motionDetector.slopeDegrees))
-                            .rotationEffect(.degrees(-90))
-                            .fontWeight(.regular)
-                            .foregroundColor(getSeverityColor(for: motionDetector.slopeDegrees))
-                            .offset(x: 40)
-                    }
+
                 }
             }
             .padding(30)
