@@ -47,28 +47,32 @@ struct XRayScoliosis: View {
                         Image(uiImage: image)
                             .resizable()
                             .scaledToFill()
-                            .frame(width: 350, height: 500)
+                            .frame(width: 330, height: 450)
                             .cornerRadius(10)
-                            .position(x:200, y:310)
+                            .position(x:200, y:250)
                     }
                     
                     CobbsLine(y:$y)
                     
                     VStack {
                         Spacer()
-                        PhotosPicker(
-                            selection: $viewModel.imageSelection,
-                            matching: .images
-                        ) {
-                            Image("Photo1")
-                                .padding()
+                        Spacer()
+                        HStack {
+                            Spacer()
+                            PhotosPicker(
+                                selection: $viewModel.imageSelection,
+                                matching: .images)
+                            {
+                                Image("Photo1")
+                            }
+                            .frame(maxWidth: .infinity, alignment: .leading)
+
                         }
-                    }
-                    .position(x:340,y:-205)
-                    .opacity(0.4)
+                        .opacity(0.4)
+                    }.padding()
                 }
                 HStack {
-                    Button("See more") {
+                    Button("How to use") {
                         showingSeeMoreSheet.toggle()
                     }
                     .frame(width: 100, height:100)
@@ -87,16 +91,18 @@ struct XRayScoliosis: View {
 struct seeMoreSheetView: View {
     var body: some View {
         NavigationView {
-            Form {
-                Text("Degree of Spinal Curve:")
-            }.navigationTitle("Cobb's Result")
+            VStack {
+                ZStack {
+                    Image("scoliosis1")
+                }
+                Text("1. Put the line onto the lower vertebrae that curves")
+                    .frame(width: 300, alignment: .leading)
+                Text("2. Adjust the circle to make the line aligned with the vertebrae line")
+                    .frame(width: 300, alignment: .leading)
+                Text("3. Repeat step 1-2 for upper vertebrae")
+                    .frame(width: 300, alignment: .leading)
+            }.navigationTitle("Guidance")
         }
-    }
-}
-
-struct guidanceSheetView: View {
-    var body: some View {
-        Text("ayam")
     }
 }
 

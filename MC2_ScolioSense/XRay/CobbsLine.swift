@@ -9,13 +9,14 @@ import Foundation
 import SwiftUI
 
 struct CobbsLine: View {
-    @State var line1StartPoint: CGPoint = CGPoint(x: 300, y: 200)
-    @State var line1EndPoint: CGPoint = CGPoint(x: 100, y: 200)
-    @State var line2StartPoint: CGPoint = CGPoint(x: 300, y: 400)
-    @State var line2EndPoint: CGPoint = CGPoint(x: 100, y: 400)
+    @State var line1StartPoint: CGPoint = CGPoint(x: 300, y: 100)
+    @State var line1EndPoint: CGPoint = CGPoint(x: 100, y: 100)
+    @State var line2StartPoint: CGPoint = CGPoint(x: 300, y: 300)
+    @State var line2EndPoint: CGPoint = CGPoint(x: 100, y: 300)
     @Binding var y: Double
     @State var cobbAngle: CGFloat = 0.0
-
+    @State var cobbSeverity: String = ""
+    
     var body: some View {
         VStack {
             ZStack {
@@ -26,7 +27,7 @@ struct CobbsLine: View {
                 }
                 .strokedPath(StrokeStyle(lineWidth: 4, lineCap: .square, lineJoin: .round))
                 .foregroundColor(.black)
-
+                
                 // Line 2
                 Path { path in
                     path.move(to: line2StartPoint)
@@ -34,7 +35,7 @@ struct CobbsLine: View {
                 }
                 .strokedPath(StrokeStyle(lineWidth: 4, lineCap: .square, lineJoin: .round))
                 .foregroundColor(.black)
-
+                
                 // Circle for Line 1 Start Point
                 Circle()
                     .frame(width: 30, height: 30)
@@ -45,9 +46,9 @@ struct CobbsLine: View {
                         .onChanged { value in
                             line1StartPoint = value.location
                             y = value.location.y
-                            cobbAngle = calculateCobbAngle()
+                            updateCobbValues()
                         })
-
+                
                 // Circle for Line 1 End Point
                 Circle()
                     .frame(width: 30, height: 30)
@@ -58,9 +59,9 @@ struct CobbsLine: View {
                         .onChanged { value in
                             line1EndPoint = value.location
                             y = value.location.y
-                            cobbAngle = calculateCobbAngle()
+                            updateCobbValues()
                         })
-
+                
                 // Circle for Line 2 Start Point
                 Circle()
                     .frame(width: 30, height: 30)
@@ -71,9 +72,9 @@ struct CobbsLine: View {
                         .onChanged { value in
                             line2StartPoint = value.location
                             y = value.location.y
-                            cobbAngle = calculateCobbAngle()
+                            updateCobbValues()
                         })
-
+                
                 // Circle for Line 2 End Point
                 Circle()
                     .frame(width: 30, height: 30)
@@ -84,28 +85,68 @@ struct CobbsLine: View {
                         .onChanged { value in
                             line2EndPoint = value.location
                             y = value.location.y
-                            cobbAngle = calculateCobbAngle()
+                            updateCobbValues()
                         })
-        }
+            }
             VStack {
                 // Display Cobb's Angle
                 Text(String(format: "Cobb's Angle: %.2f°", cobbAngle))
                     .foregroundColor(.blue)
+                    .frame(alignment: .leading)
             }
-                .frame(width: 200, height: 100)
-                .position(x: 200, y:300)
+            
+            VStack {
+                // Display Cobb's Angle Severity
+                Text(String(format: "Severity: \(cobbSeverity)"))
+                    .foregroundColor(severityColor())
+                    .frame(alignment: .leading)
+            }
         }
     }
-
+    
     func calculateCobbAngle() -> CGFloat {
         let angle1 = atan2(line1EndPoint.y - line1StartPoint.y, line1EndPoint.x - line1StartPoint.x)
         let angle2 = atan2(line2EndPoint.y - line2StartPoint.y, line2EndPoint.x - line2StartPoint.x)
         var angleDifference = abs(angle1 - angle2) * 180 / .pi
         
         if angleDifference > 180 {
-                    angleDifference = 360 - angleDifference
-                }
+            angleDifference = 360 - angleDifference
+        }
         return angleDifference
+    }
+    
+    func determineAngle () -> String {
+        let severityLevel = calculateCobbAngle()
+        
+        if severityLevel > 40 {
+            return "Severe"
+        } else if severityLevel > 20 {
+            return "Moderate"
+        } else if severityLevel > 10 {
+            return "Mild"
+        } else {
+            return "Normal"
+        }
+    }
+    
+    func severityColor() -> Color {
+            switch cobbSeverity {
+            case "Severe":
+                return .red
+            case "Moderate":
+                return .orange
+            case "Mild":
+                return .yellow
+            case "Normal":
+                return .green
+            default:
+                return .blue
+            }
+        }
+    
+    func updateCobbValues() {
+        cobbAngle = calculateCobbAngle()
+        cobbSeverity = determineAngle()
     }
 }
 
