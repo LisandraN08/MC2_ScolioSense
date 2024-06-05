@@ -28,12 +28,14 @@ struct scolioMeterView: View {
                 }.offset(x: 50)
                 
                 HStack {
-                    VStack {
+                    HStack(spacing:0) {
                         Text("\(motionDetector.slopeDegrees, specifier: "%.f")°")
                             .rotationEffect(.degrees(-90))
                             .font(.system(size: 70))
                             .fontWeight(.bold)
                             .foregroundColor(getSeverityColor(for: motionDetector.slopeDegrees))
+                        
+                      
 
                     }
                     
@@ -58,15 +60,19 @@ struct scolioMeterView: View {
                 
                 HStack {
                     Spacer()
-                    button(text: "XSUBMIT", width: 146, height: 49, font: 22, bgColor: "BCE0F7", bgTransparency: 1.0, fontColor: "000000", fontTransparency: 0.7, cornerRadius: 20) {
-                        showAlert = true
-                        DispatchQueue.main.asyncAfter(deadline: .now() + 1) {
-                            showAlert = false
-                        }
+//                    button(text: "XSUBMIT", width: 146, height: 49, font: 22, bgColor: "BCE0F7", bgTransparency: 1.0, fontColor: "000000", fontTransparency: 0.7, cornerRadius: 20) {
+//                        showAlert = true
+//                        DispatchQueue.main.asyncAfter(deadline: .now() + 1) {
+//                            showAlert = false
+//                        }
+//                    }
+                    HStack {
+                        Text(getSeverityText(for: motionDetector.slopeDegrees))
+                            .rotationEffect(.degrees(-90))
+                            .fontWeight(.regular)
+                            .foregroundColor(getSeverityColor(for: motionDetector.slopeDegrees))
+                            .offset(x: 40)
                     }
-                        .rotationEffect(.degrees(-90))
-                        .offset(x: 50)
-                        .opacity(0.0)
                 }
             }
             .padding(30)
@@ -122,6 +128,19 @@ struct scolioMeterView: View {
                 default:
                     return .red
                 }
+        }
+    
+    private func getSeverityText(for degrees: Double) -> String {
+        let absDegrees = abs(degrees)
+            if absDegrees < 10 {
+                return "Normal"
+            } else if absDegrees < 20 {
+                return "Mild"
+            } else if absDegrees < 40 {
+                return "Moderate"
+            } else {
+                return "Severe"
+            }
         }
 }
 
