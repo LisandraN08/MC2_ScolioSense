@@ -14,7 +14,7 @@ struct CobbsLine: View {
     @State var line2StartPoint: CGPoint = CGPoint(x: 300, y: 400)
     @State var line2EndPoint: CGPoint = CGPoint(x: 100, y: 400)
     @Binding var y: Double
-    @State private var cobbAngle: CGFloat = 0.0
+    @State var cobbAngle: CGFloat = 0.0
 
     var body: some View {
         VStack {
@@ -91,8 +91,9 @@ struct CobbsLine: View {
                 // Display Cobb's Angle
                 Text(String(format: "Cobb's Angle: %.2f°", cobbAngle))
                     .foregroundColor(.blue)
-                    .position(x: 200, y: 200)
             }
+                .frame(width: 200, height: 100)
+                .position(x: 200, y:300)
         }
     }
 

@@ -36,7 +36,9 @@ final class XRayScoliosisModel: ObservableObject {
 struct XRayScoliosis: View {
     @State var y: Double = 0
     @StateObject private var viewModel = XRayScoliosisModel()
-  
+    @State var showingSeeMoreSheet = false
+    @State var showGuidanceSheet = false
+    
     var body: some View {
         NavigationView {
             VStack {
@@ -47,26 +49,56 @@ struct XRayScoliosis: View {
                             .scaledToFill()
                             .frame(width: 350, height: 500)
                             .cornerRadius(10)
-                            .position(x:200, y:300)
+                            .position(x:200, y:310)
                     }
                     
                     CobbsLine(y:$y)
-
+                    
                     VStack {
                         Spacer()
                         PhotosPicker(
                             selection: $viewModel.imageSelection,
                             matching: .images
                         ) {
-                            Image("ButtonInsert")
+                            Image("Photo1")
                                 .padding()
                         }
-                        }
                     }
-            }.navigationTitle("XRay Cobb's Meter")
-        }
+                    .position(x:340,y:-205)
+                    .opacity(0.4)
+                }
+                HStack {
+                    Button("See more") {
+                        showingSeeMoreSheet.toggle()
+                    }
+                    .frame(width: 100, height:100)
+                    .bold()
+                }
+                .sheet(isPresented: $showingSeeMoreSheet) {
+                    seeMoreSheetView()
+                        .presentationDetents([.large])
+                        .presentationDragIndicator(.visible)
+                }
+            }.navigationTitle("Cobb's Angle")
         }
     }
+}
+
+struct seeMoreSheetView: View {
+    var body: some View {
+        NavigationView {
+            Form {
+                Text("Degree of Spinal Curve:")
+            }.navigationTitle("Cobb's Result")
+        }
+    }
+}
+
+struct guidanceSheetView: View {
+    var body: some View {
+        Text("ayam")
+    }
+}
 
 struct XRayScoliosis_Previews: PreviewProvider {
     static var previews: some View {
