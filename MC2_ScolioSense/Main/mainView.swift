@@ -136,66 +136,66 @@ struct mainView: View {
                             Spacer()
                         }.padding(.top,20)
                         VStack {
-                        ForEach(records.reversed(), id: \.id) { record in
-                            HStack() {
-                                HStack {
-                                    let recordAbs = abs(record.angle)
-                                    if recordAbs <= 10 {
-                                        
-                                        ZStack {
-                                            Text("Normal")
-                                            RoundedRectangle(cornerSize: CGSize(width: 20, height: 20))
-                                                .fill(Color.green)
-                                                .opacity(0.4)
-                                                .frame(width: 80, height: 20)
-                                        }
-                                    } else if recordAbs < 20 {
-                                        ZStack {
-                                            Text("Mild")
-                                            RoundedRectangle(cornerSize: CGSize(width: 20, height: 20))
-                                                .fill(Color.yellow)
-                                                .opacity(0.4)
-                                                .frame(width: 80, height: 20)
-                                        }                                    } else if recordAbs < 40 {
+                            ForEach(records.reversed(), id: \.id) { record in
+                                HStack() {
+                                    HStack {
+                                        let recordAbs = abs(record.angle)
+                                        if recordAbs <= 10 {
+                                            
                                             ZStack {
-                                                Text("Moderate")
+                                                Text("Normal").opacity(0.7)
                                                 RoundedRectangle(cornerSize: CGSize(width: 20, height: 20))
-                                                    .fill(Color.orange)
-                                                    .opacity(0.4)
-                                                    .frame(width: 80, height: 20)
+                                                    .fill(Color.green)
+                                                    .opacity(0.3)
+                                                    .frame(width: 80, height: 30)
                                             }
-                                        } else {
+                                        } else if recordAbs < 20 {
                                             ZStack {
-                                                Text("Severe")
+                                                Text("Mild").opacity(0.7)
                                                 RoundedRectangle(cornerSize: CGSize(width: 20, height: 20))
-                                                    .fill(Color.red)
-                                                    .opacity(0.4)
-                                                    .frame(width: 80, height: 20)
-                                            }                                    }
-                                    Text("Angle: \(record.angle, specifier: "%.2f")°")
-                                }
-                                Text("Date: \(record.date, formatter: dateFormatter)")
-                            }
-                            .padding()
-                            .frame(width: 350)
-                            .ignoresSafeArea(.all)
-                            .edgesIgnoringSafeArea(.all)
-                            .background(Color(hex: "81C9F3", transparency: 0.1))
-                            .cornerRadius(8)
-                            .gesture(
-                                DragGesture()
-                                    .onEnded { value in
-                                        if value.translation.width < -100 {
-                                            deleteRecord(record)
-                                        }
+                                                    .fill(Color.yellow)
+                                                    .opacity(0.3)
+                                                    .frame(width: 80, height: 30)
+                                            }                                    } else if recordAbs < 40 {
+                                                ZStack {
+                                                    Text("Moderate").opacity(0.7)
+                                                    RoundedRectangle(cornerSize: CGSize(width: 20, height: 20))
+                                                        .fill(Color.orange)
+                                                        .opacity(0.3)
+                                                        .frame(width: 80, height: 30)
+                                                }
+                                            } else {
+                                                ZStack {
+                                                    Text("Severe").opacity(0.7)
+                                                    RoundedRectangle(cornerSize: CGSize(width: 20, height: 20))
+                                                        .fill(Color.red)
+                                                        .opacity(0.3)
+                                                        .frame(width: 80, height: 30)
+                                                }                                    }
+                                        Text("Angle: \(record.angle, specifier: "%.2f")°")
                                     }
-                            )
-                            .padding(.horizontal)
-                            .padding(.vertical, 5)
+                                    Text("Date: \(record.date, formatter: dateFormatter)")
+                                }
+                                .padding()
+                                .frame(width: 350)
+                                .ignoresSafeArea(.all)
+                                .edgesIgnoringSafeArea(.all)
+                                .background(Color(hex: "81C9F3", transparency: 0.1))
+                                .cornerRadius(8)
+                                .gesture(
+                                    DragGesture()
+                                        .onEnded { value in
+                                            if value.translation.width < -100 {
+                                                deleteRecord(record)
+                                            }
+                                        }
+                                )
+                                .padding(.horizontal)
+                                .padding(.vertical, 5)
+                            }
                         }
-                    }
                         
-
+                        
                     }
                     Spacer()
                 }.padding()
@@ -212,8 +212,8 @@ struct mainView: View {
             // Update your storage (e.g., UserDefaults) or database here
         }
     }
-
-
+    
+    
 }
 
 private let dateFormatter: DateFormatter = {
