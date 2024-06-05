@@ -42,6 +42,23 @@ struct XRayScoliosis: View {
     var body: some View {
         NavigationView {
             VStack {
+                HStack {
+                    Text("Cobb's Angle").font(.system(size: 35))
+                        .fontWeight(.bold)
+                    Spacer()
+                                            HStack {
+                                                PhotosPicker(
+                                                    selection: $viewModel.imageSelection,
+                                                    matching: .images)
+                                                {
+                                                    Image("Photo1")
+                                                }
+                                                .frame(alignment: .leading)
+                                                .frame(width: 35, height: 35)
+                    
+                                            }
+                                            .opacity(0.4)
+                }.padding()
                 ZStack {
                     if let image = viewModel.selectedImage {
                         Image(uiImage: image)
@@ -49,7 +66,7 @@ struct XRayScoliosis: View {
                             .scaledToFill()
                             .frame(width: 330, height: 450)
                             .cornerRadius(10)
-                            .position(x:200, y:250)
+                            .position(x:500, y:50)
                     }
                     
                     CobbsLine(y:$y)
@@ -57,18 +74,7 @@ struct XRayScoliosis: View {
                     VStack {
                         Spacer()
                         Spacer()
-                        HStack {
-                            Spacer()
-                            PhotosPicker(
-                                selection: $viewModel.imageSelection,
-                                matching: .images)
-                            {
-                                Image("Photo1")
-                            }
-                            .frame(maxWidth: .infinity, alignment: .leading)
 
-                        }
-                        .opacity(0.4)
                     }.padding()
                 }
                 HStack {
@@ -83,7 +89,7 @@ struct XRayScoliosis: View {
                         .presentationDetents([.large])
                         .presentationDragIndicator(.visible)
                 }
-            }.navigationTitle("Cobb's Angle")
+            }
         }
     }
 }

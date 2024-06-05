@@ -34,13 +34,13 @@ struct scolioMeterView: View {
                             .fontWeight(.bold)
                             .foregroundColor(getSeverityColor(for: motionDetector.slopeDegrees))
                             .frame(width:200)
-                            .offset(x:20,y:-50)
+                            .offset(x:30,y:-50)
                         
                         Text(getSeverityText(for: motionDetector.slopeDegrees))
                             .fontWeight(.regular)
                             .foregroundColor(getSeverityColor(for: motionDetector.slopeDegrees))
                             .frame(width:200)
-                            .offset(x:20,y:-40)
+                            .offset(x:30,y:-50)
 
                     }
                     .rotationEffect(.degrees(-90))

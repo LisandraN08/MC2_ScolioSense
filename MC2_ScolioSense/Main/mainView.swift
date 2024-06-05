@@ -146,7 +146,7 @@ struct mainView: View {
                                             Text("Normal")
                                             RoundedRectangle(cornerSize: CGSize(width: 20, height: 20))
                                                 .fill(Color.green)
-                                                .opacity(0.5)
+                                                .opacity(0.4)
                                                 .frame(width: 80, height: 20)
                                         }
                                     } else if recordAbs < 20 {
@@ -154,14 +154,14 @@ struct mainView: View {
                                             Text("Mild")
                                             RoundedRectangle(cornerSize: CGSize(width: 20, height: 20))
                                                 .fill(Color.yellow)
-                                                .opacity(0.5)
+                                                .opacity(0.4)
                                                 .frame(width: 80, height: 20)
                                         }                                    } else if recordAbs < 40 {
                                             ZStack {
                                                 Text("Moderate")
                                                 RoundedRectangle(cornerSize: CGSize(width: 20, height: 20))
                                                     .fill(Color.orange)
-                                                    .opacity(0.5)
+                                                    .opacity(0.4)
                                                     .frame(width: 80, height: 20)
                                             }
                                         } else {
@@ -169,7 +169,7 @@ struct mainView: View {
                                                 Text("Severe")
                                                 RoundedRectangle(cornerSize: CGSize(width: 20, height: 20))
                                                     .fill(Color.red)
-                                                    .opacity(0.5)
+                                                    .opacity(0.4)
                                                     .frame(width: 80, height: 20)
                                             }                                    }
                                     Text("Angle: \(record.angle, specifier: "%.2f")°")
