@@ -33,7 +33,7 @@ struct mainView: View {
                                     HStack {
                                         Image("bodyscan")
                                             .resizable()                .frame(width: 51, height: 60)
-                                            .offset(x:-10)
+                                            .offset(x:-15)
                                     }
                                     
                                     
@@ -93,10 +93,9 @@ struct mainView: View {
                         }
                             
                         }
+                        
                         //xray
-                        Button(action: {
-                            
-                        }) {
+                        NavigationLink(destination: XRayScoliosis()) {
                             ZStack {
                                 RoundedRectangle(cornerRadius: 22)
                                     .fill(Color(hex: "81C9F3", transparency: 0.5))
@@ -104,7 +103,7 @@ struct mainView: View {
                                 HStack(spacing:0) {
                                     Image("xray")
                                         .resizable()                .frame(width: 43, height: 44)
-                                        .offset(x:45)
+                                        .offset(x:35)
                                     
                                     
                                     VStack(spacing:5) {
@@ -136,14 +135,52 @@ struct mainView: View {
                                 .font(.system(size: 24, weight: .bold, design: .rounded))
                             Spacer()
                         }.padding(.top,20)
-                        
+                        VStack {
                         ForEach(records.reversed(), id: \.id) { record in
-                            VStack(alignment: .leading) {
-                                Text("Angle: \(record.angle, specifier: "%.2f")°")
+                            HStack() {
+                                HStack {
+                                    let recordAbs = abs(record.angle)
+                                    if recordAbs <= 10 {
+                                        
+                                        ZStack {
+                                            Text("Normal")
+                                            RoundedRectangle(cornerSize: CGSize(width: 20, height: 20))
+                                                .fill(Color.green)
+                                                .opacity(0.5)
+                                                .frame(width: 80, height: 20)
+                                        }
+                                    } else if recordAbs < 20 {
+                                        ZStack {
+                                            Text("Mild")
+                                            RoundedRectangle(cornerSize: CGSize(width: 20, height: 20))
+                                                .fill(Color.yellow)
+                                                .opacity(0.5)
+                                                .frame(width: 80, height: 20)
+                                        }                                    } else if recordAbs < 40 {
+                                            ZStack {
+                                                Text("Moderate")
+                                                RoundedRectangle(cornerSize: CGSize(width: 20, height: 20))
+                                                    .fill(Color.orange)
+                                                    .opacity(0.5)
+                                                    .frame(width: 80, height: 20)
+                                            }
+                                        } else {
+                                            ZStack {
+                                                Text("Severe")
+                                                RoundedRectangle(cornerSize: CGSize(width: 20, height: 20))
+                                                    .fill(Color.red)
+                                                    .opacity(0.5)
+                                                    .frame(width: 80, height: 20)
+                                            }                                    }
+                                    Text("Angle: \(record.angle, specifier: "%.2f")°")
+                                }
                                 Text("Date: \(record.date, formatter: dateFormatter)")
                             }
                             .padding()
-                            .background(Color(hex: "ffffff", transparency: 0.5))
+                            .frame(width: 350)
+                            .ignoresSafeArea(.all)
+                            .edgesIgnoringSafeArea(.all)
+                            .background(Color(hex: "81C9F3", transparency: 0.1))
                             .cornerRadius(8)
                             .gesture(
                                 DragGesture()
@@ -156,7 +193,7 @@ struct mainView: View {
                             .padding(.horizontal)
                             .padding(.vertical, 5)
                         }
-
+                    }
                         
 
                     }
