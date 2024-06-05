@@ -33,6 +33,8 @@ struct scolioMeterView: View {
                             .rotationEffect(.degrees(-90))
                             .font(.system(size: 70))
                             .fontWeight(.bold)
+                            .foregroundColor(getSeverityColor(for: motionDetector.slopeDegrees))
+
                     }
                     
                     Spacer()
@@ -107,6 +109,20 @@ struct scolioMeterView: View {
         let offset = CGFloat(motionDetector.slopeDegrees) * maxOffset / 90.0
         return offset
     }
+    
+    private func getSeverityColor(for degrees: Double) -> Color {
+        let absDegrees = abs(degrees)
+                switch absDegrees {
+                case 0..<10:
+                    return .green
+                case 10..<20:
+                    return .yellow
+                case 20..<40:
+                    return .orange
+                default:
+                    return .red
+                }
+        }
 }
 
 private let dateFormatter: DateFormatter = {

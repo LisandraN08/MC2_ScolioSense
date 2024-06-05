@@ -102,6 +102,7 @@ struct CobbsLine: View {
         let angle2 = atan2(line2EndPoint.y - line2StartPoint.y, line2EndPoint.x - line2StartPoint.x)
         var angleDifference = abs(angle1 - angle2) * 180 / .pi
         
+        
         if angleDifference > 180 {
                     angleDifference = 360 - angleDifference
                 }
