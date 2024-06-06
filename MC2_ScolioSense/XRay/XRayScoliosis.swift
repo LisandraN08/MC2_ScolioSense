@@ -66,7 +66,11 @@ struct XRayScoliosis: View {
                             .scaledToFill()
                             .frame(width: 330, height: 450)
                             .cornerRadius(10)
-                            .position(x:200, y:250)
+                            .position(x:200,y:250)
+                    }
+                    VStack {
+                        Spacer()
+                        Spacer()
                     }
                     
                     CobbsLine(y:$y)
@@ -74,7 +78,7 @@ struct XRayScoliosis: View {
                     VStack {
                         Spacer()
                         Spacer()
-
+                        Spacer()
                     }.padding()
                 }
                 HStack {

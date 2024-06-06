@@ -33,7 +33,7 @@ struct CobbsLine: View {
                 .animation(.easeInOut, value: showAlert)
             }
             VStack {
-
+                Spacer()
                 ZStack {
                     // Line 1
                     Path { path in
@@ -103,6 +103,8 @@ struct CobbsLine: View {
                                 updateCobbValues()
                             })
                 }
+                
+                
                 HStack {
                     VStack(alignment: .leading) {
                         // Display Cobb's Angle
