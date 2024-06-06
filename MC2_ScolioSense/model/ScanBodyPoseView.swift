@@ -63,6 +63,12 @@ struct ScanBodyPoseView: View {
                     .font(.headline)
             }
             
+            if let severityText = viewModel.severityText {
+                Text("Severity: \(severityText)")
+                    .padding()
+                    .foregroundColor(.red)
+                    .font(.headline)
+            }
             
 
 //            Button("Save Image") {
@@ -93,7 +99,14 @@ class ImageProcessingViewModel: ObservableObject {
     @Published var sourceType: UIImagePickerController.SourceType = .photoLibrary
     @Published var isBodyPoseRequired = true
     
-    @Published var relativeAngle: CGFloat?
+    @Published var relativeAngle: CGFloat? {
+        didSet {
+            if let relativeAngle = relativeAngle {
+                severityText = getSeverityText(for: Double(relativeAngle))
+            }
+        }
+    }
+    @Published var severityText: String?
     
     private let visionQueue = DispatchQueue.global(qos: .userInitiated)
     private var cancellables = Set<AnyCancellable>()
@@ -220,12 +233,14 @@ class ImageProcessingViewModel: ObservableObject {
                let rightShoulderPoint = jointPoints[.rightShoulder] {
                 
                 let angle = calculateAngleBetweenPoints(leftPoint: leftShoulderPoint, rightPoint: rightShoulderPoint)
+                var severityLevel = 0
                 var relativeAngle = abs(90 - angle) // Menghitung sudut kemiringan relatif terhadap 90 derajat
                 
                 // Jika sudut relatif lebih besar dari 90 derajat, kurangkan dari 180 derajat
                 if relativeAngle > 90 {
                     relativeAngle = 180 - relativeAngle
                 }
+                severityLevel = Int(relativeAngle)
                 
                 // Setel nilai relativeAngle di dalam model
                 self.relativeAngle = relativeAngle
@@ -242,6 +257,20 @@ class ImageProcessingViewModel: ObservableObject {
         print("Processed image successfully")
         return processedImage
     }
+    
+    private func getSeverityText(for relativeAngle: Double) -> String {
+        let relativeAngle = abs(relativeAngle)
+        if relativeAngle > 40 {
+            return "Severe"
+        } else if relativeAngle > 20 {
+            return "Moderate"
+        } else if relativeAngle > 10 {
+            return "Mild"
+        } else {
+            return "Normal"
+        }
+        
+        }
 
 }
 

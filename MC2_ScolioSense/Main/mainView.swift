@@ -22,9 +22,7 @@ struct mainView: View {
                     
                     VStack(spacing:20) {
                         
-                        Button(action: {
-                            
-                        }) {
+                        NavigationLink(destination: ScanBodyPoseView()) {
                             ZStack {
                                 RoundedRectangle(cornerRadius: 22)
                                     .fill(Color(hex: "81C9F3", transparency: 0.5))
@@ -32,7 +30,7 @@ struct mainView: View {
                                 HStack(spacing:20) {
                                     HStack {
                                         Image("bodyscan")
-                                            .resizable()                .frame(width: 51, height: 60)
+                                            .resizable()                .frame(width: 60, height: 60)
                                             .offset(x:-15)
                                     }
                                     
@@ -41,7 +39,7 @@ struct mainView: View {
                                         
                                         HStack(spacing:5) {
                                             //Scan your Back
-                                            Text("Scan your Back").font(.system(size: 22, weight: .medium, design: .rounded)).foregroundColor(Color(#colorLiteral(red: 0, green: 0, blue: 0, alpha: 0.7)))
+                                            Text("Scan your Body").font(.system(size: 22, weight: .medium, design: .rounded)).foregroundColor(Color(#colorLiteral(red: 0, green: 0, blue: 0, alpha: 0.7)))
                                             
                                             Image(systemName: "chevron.right")
                                                 .resizable()
