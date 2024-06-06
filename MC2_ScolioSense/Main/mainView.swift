@@ -209,7 +209,7 @@ struct mainView: View {
     private func deleteRecord(_ record: AngleRecord) {
         if let index = records.firstIndex(where: { $0.id == record.id }) {
             records.remove(at: index)
-            // Update your storage (e.g., UserDefaults) or database here
+           
         }
     }
     

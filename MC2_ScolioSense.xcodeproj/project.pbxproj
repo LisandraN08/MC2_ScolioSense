@@ -24,7 +24,6 @@
 		1E7B56BF2C0D6B8400339811 /* mainView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1E7B56BE2C0D6B8400339811 /* mainView.swift */; };
 		1E7B56C12C0EB64A00339811 /* AngleRecord.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1E7B56C02C0EB64A00339811 /* AngleRecord.swift */; };
 		1E7B56C32C0EB69B00339811 /* RecordManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1E7B56C22C0EB69B00339811 /* RecordManager.swift */; };
-		1E7B56C62C0EC7B000339811 /* cobaScan.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1E7B56C52C0EC7B000339811 /* cobaScan.swift */; };
 		EB72DC652C0ED427000E63A6 /* CobbsLine.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB72DC642C0ED427000E63A6 /* CobbsLine.swift */; };
 		EB72DC672C0ED43C000E63A6 /* XRayScoliosis.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB72DC662C0ED43C000E63A6 /* XRayScoliosis.swift */; };
 /* End PBXBuildFile section */
@@ -67,7 +66,6 @@
 		1E7B56BE2C0D6B8400339811 /* mainView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = mainView.swift; sourceTree = "<group>"; };
 		1E7B56C02C0EB64A00339811 /* AngleRecord.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AngleRecord.swift; sourceTree = "<group>"; };
 		1E7B56C22C0EB69B00339811 /* RecordManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecordManager.swift; sourceTree = "<group>"; };
-		1E7B56C52C0EC7B000339811 /* cobaScan.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = cobaScan.swift; sourceTree = "<group>"; };
 		EB72DC642C0ED427000E63A6 /* CobbsLine.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CobbsLine.swift; sourceTree = "<group>"; };
 		EB72DC662C0ED43C000E63A6 /* XRayScoliosis.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = XRayScoliosis.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -181,7 +179,6 @@
 		1E31ACD92C0B092F006CB94D /* Components */ = {
 			isa = PBXGroup;
 			children = (
-				1E7B56C42C0EC7A100339811 /* Scan */,
 				1E31ACDA2C0B0974006CB94D /* textHeading.swift */,
 				1E31ACDC2C0B09C5006CB94D /* colorConverter.swift */,
 				1E31ACDE2C0B0D96006CB94D /* button.swift */,
@@ -195,14 +192,6 @@
 				1E7B56BE2C0D6B8400339811 /* mainView.swift */,
 			);
 			path = Main;
-			sourceTree = "<group>";
-		};
-		1E7B56C42C0EC7A100339811 /* Scan */ = {
-			isa = PBXGroup;
-			children = (
-				1E7B56C52C0EC7B000339811 /* cobaScan.swift */,
-			);
-			path = Scan;
 			sourceTree = "<group>";
 		};
 		EB72DC632C0ED413000E63A6 /* XRay */ = {
@@ -350,7 +339,6 @@
 				1E31ACDF2C0B0D96006CB94D /* button.swift in Sources */,
 				1E7B56BF2C0D6B8400339811 /* mainView.swift in Sources */,
 				1E31ACE12C0B6892006CB94D /* CustomAlert.swift in Sources */,
-				1E7B56C62C0EC7B000339811 /* cobaScan.swift in Sources */,
 				1E389E352BFD8818008CE8C7 /* MotionManager.swift in Sources */,
 				1E31ACD32C081F34006CB94D /* datamodelTry.swift in Sources */,
 				10D23C9A2BFD815C00A7C338 /* MC2_ScolioSenseApp.swift in Sources */,

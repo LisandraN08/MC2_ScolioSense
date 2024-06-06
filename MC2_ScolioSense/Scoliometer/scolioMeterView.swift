@@ -133,15 +133,16 @@ struct scolioMeterView: View {
     
     private func getSeverityText(for degrees: Double) -> String {
         let absDegrees = abs(degrees)
-            if absDegrees < 10 {
-                return "Normal"
-            } else if absDegrees < 20 {
-                return "Mild"
-            } else if absDegrees < 40 {
-                return "Moderate"
-            } else {
-                return "Severe"
-            }
+        if absDegrees > 40 {
+            return "Severe"
+        } else if absDegrees > 20 {
+            return "Moderate"
+        } else if absDegrees > 10 {
+            return "Mild"
+        } else {
+            return "Normal"
+        }
+        
         }
 }
 
