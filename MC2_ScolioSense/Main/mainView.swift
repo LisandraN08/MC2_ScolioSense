@@ -22,7 +22,8 @@ struct mainView: View {
                     
                     VStack(spacing:20) {
                         
-                        NavigationLink(destination: ScanBodyPoseView()) {
+                        NavigationLink(destination: ScanBodyPoseView(onSave: { newRecord in
+                            records.append(newRecord)})) {
                             ZStack {
                                 RoundedRectangle(cornerRadius: 22)
                                     .fill(Color(hex: "81C9F3", transparency: 0.5))

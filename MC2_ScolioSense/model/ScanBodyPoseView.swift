@@ -13,17 +13,30 @@ import UIKit
 
 struct ScanBodyPoseView: View {
     @StateObject private var viewModel = ImageProcessingViewModel()
-
+    var onSave: ((AngleRecord) -> Void)?
+    @State private var showAlert = false
+    
     var body: some View {
         VStack {
             if let image = viewModel.processedUIImage {
-                Image(uiImage: image)
-                    .resizable()
-                    .scaledToFit()
-                    .frame(width: 500, height: 500)
-                    .onAppear {
-                        print("Displaying processed image")
+                ZStack {
+                    Image(uiImage: image)
+                        .resizable()
+                        .scaledToFit()
+                        .frame(width: 500, height: 500)
+                        .onAppear {
+                            print("Displaying processed image")
+                        }
+                    if showAlert {
+                        HStack {
+                            CustomAlert(title: "Angle Saved", message: "", buttonText: "") {
+                                showAlert = false
+                            }
+                        }
+                        .transition(.opacity)
+                        .animation(.easeInOut, value: showAlert)
                     }
+                }
             } else {
                 Image(systemName: "photo")
                     .resizable()
@@ -34,27 +47,29 @@ struct ScanBodyPoseView: View {
                         print("Displaying placeholder image")
                     }
             }
-
-            HStack {
-                Button("Load Image") {
-                    viewModel.showImagePicker = true
-                    viewModel.sourceType = .photoLibrary
-                }
-                .padding()
-
-                Button("Take Picture") {
-                    viewModel.showImagePicker = true
-                    viewModel.sourceType = .camera
-                }
-                .padding()
-            }
+            ZStack {
                 
-
-
+                HStack {
+                    Button("Load Image") {
+                        viewModel.showImagePicker = true
+                        viewModel.sourceType = .photoLibrary
+                    }
+                    .padding()
+                    
+                    Button("Take Picture") {
+                        viewModel.showImagePicker = true
+                        viewModel.sourceType = .camera
+                    }
+                    .padding()
+                }
+            }
+            
+            
+            
             if viewModel.isProcessing {
                 ProgressView()
             }
-
+            
             
             if let relativeAngle = viewModel.relativeAngle {
                 Text("Relative Angle: \(relativeAngle)°")
@@ -70,22 +85,38 @@ struct ScanBodyPoseView: View {
                     .font(.headline)
             }
             
-
-//            Button("Save Image") {
-//                if let image = viewModel.processedUIImage {
-//                    UIImageWriteToSavedPhotosAlbum(image, nil, nil, nil)
-//                }
-//            }
-//            .padding()
-//            .disabled(viewModel.processedUIImage == nil)
+            HStack {
+                button(text:"SUBMIT", width: 85, height:49, font: 15, bgColor: "BCE0F7", bgTransparency: 0.5 , fontColor:"000000", fontTransparency: 0.7, cornerRadius: 20){
+                    submitData()
+                    showAlert = true
+                    DispatchQueue.main.asyncAfter(deadline: .now() + 1) {
+                        showAlert = false
+                    }
+                }
+            }
+            //            Button("Save Image") {
+            //                if let image = viewModel.processedUIImage {
+            //                    UIImageWriteToSavedPhotosAlbum(image, nil, nil, nil)
+            //                }
+            //            }
+            //            .padding()
+            //            .disabled(viewModel.processedUIImage == nil)
         }
+        
         .sheet(isPresented: $viewModel.showImagePicker) {
             ImagePicker(sourceType: viewModel.sourceType, selectedImage: $viewModel.originalUIImage)
         }
         .onChange(of: viewModel.originalUIImage) { _ in
             viewModel.processImage()
         }
+        
     }
+    func submitData() {
+        guard let relativeAngle = viewModel.relativeAngle else { return }
+        let newRecord = AngleRecord(angle: Double(relativeAngle), date: Date())
+        RecordManager.shared.saveRecord(newRecord)
+    }
+    
 }
 
 
@@ -182,14 +213,14 @@ class ImageProcessingViewModel: ObservableObject {
     private func drawBodyPose(on image: UIImage, using observations: [VNHumanBodyPoseObservation]) -> UIImage? {
         UIGraphicsBeginImageContextWithOptions(image.size, false, image.scale)
         image.draw(in: CGRect(origin: .zero, size: image.size))
-
+        
         guard let context = UIGraphicsGetCurrentContext() else {
             print("Failed to create context")
             return nil
         }
-
+        
         context.setLineWidth(2.0) // Set the line width for drawing connections
-
+        
         for observation in observations {
             let jointPairs: [(VNHumanBodyPoseObservation.JointName, VNHumanBodyPoseObservation.JointName)] = [
                 (.leftShoulder, .leftElbow), (.leftElbow, .leftWrist),
@@ -199,16 +230,16 @@ class ImageProcessingViewModel: ObservableObject {
                 (.leftShoulder, .leftHip), (.rightShoulder, .rightHip),
                 (.leftShoulder, .rightShoulder), (.leftHip, .rightHip)
             ]
-
+            
             let jointNames: [VNHumanBodyPoseObservation.JointName] = [
                 .nose, .leftEye, .rightEye, .leftEar, .rightEar,
                 .leftShoulder, .rightShoulder, .leftElbow, .rightElbow,
                 .leftWrist, .rightWrist, .leftHip, .rightHip,
                 .leftKnee, .rightKnee, .leftAnkle, .rightAnkle
             ]
-
+            
             var jointPoints: [VNHumanBodyPoseObservation.JointName: CGPoint] = [:]
-
+            
             for jointName in jointNames {
                 if let point = try? observation.recognizedPoint(jointName), point.confidence > 0.1 {
                     let translatedPoint = point.location.translateFromCoreImageToUIKitCoordinateSpace(using: image.size.height)
@@ -219,7 +250,7 @@ class ImageProcessingViewModel: ObservableObject {
                     jointPoints[jointName] = translatedPoint
                 }
             }
-
+            
             // Draw lines connecting the joints
             context.setStrokeColor(UIColor.green.cgColor) // Set the color for the lines
             for (jointA, jointB) in jointPairs {
@@ -247,11 +278,11 @@ class ImageProcessingViewModel: ObservableObject {
                 
                 print("Sudut kemiringan antara leftShoulder dan rightShoulder adalah \(relativeAngle) derajat")
             }
-
-
-
+            
+            
+            
         }
-
+        
         let processedImage = UIGraphicsGetImageFromCurrentImageContext()
         UIGraphicsEndImageContext()
         print("Processed image successfully")
@@ -270,46 +301,46 @@ class ImageProcessingViewModel: ObservableObject {
             return "Normal"
         }
         
-        }
-
+    }
+    
 }
 
 struct ImagePicker: UIViewControllerRepresentable {
     class Coordinator: NSObject, UINavigationControllerDelegate, UIImagePickerControllerDelegate {
         let parent: ImagePicker
-
+        
         init(parent: ImagePicker) {
             self.parent = parent
         }
-
+        
         func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey: Any]) {
             if let image = info[.originalImage] as? UIImage {
                 parent.selectedImage = image
             }
-
+            
             parent.presentationMode.wrappedValue.dismiss()
         }
-
+        
         func imagePickerControllerDidCancel(_ picker: UIImagePickerController) {
             parent.presentationMode.wrappedValue.dismiss()
         }
     }
-
+    
     var sourceType: UIImagePickerController.SourceType
     @Binding var selectedImage: UIImage?
     @Environment(\.presentationMode) private var presentationMode
-
+    
     func makeCoordinator() -> Coordinator {
         Coordinator(parent: self)
     }
-
+    
     func makeUIViewController(context: Context) -> UIImagePickerController {
         let picker = UIImagePickerController()
         picker.delegate = context.coordinator
         picker.sourceType = sourceType
         return picker
     }
-
+    
     func updateUIViewController(_ uiViewController: UIImagePickerController, context: Context) {}
 }
 
