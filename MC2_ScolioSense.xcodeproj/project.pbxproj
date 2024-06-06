@@ -26,7 +26,6 @@
 		1E7B56C32C0EB69B00339811 /* RecordManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1E7B56C22C0EB69B00339811 /* RecordManager.swift */; };
 		EB72DC652C0ED427000E63A6 /* CobbsLine.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB72DC642C0ED427000E63A6 /* CobbsLine.swift */; };
 		EB72DC672C0ED43C000E63A6 /* XRayScoliosis.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB72DC662C0ED43C000E63A6 /* XRayScoliosis.swift */; };
-
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -57,7 +56,6 @@
 		10D23CB22BFD815E00A7C338 /* MC2_ScolioSenseUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = MC2_ScolioSenseUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		10D23CB62BFD815E00A7C338 /* MC2_ScolioSenseUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MC2_ScolioSenseUITests.swift; sourceTree = "<group>"; };
 		10D23CB82BFD815E00A7C338 /* MC2_ScolioSenseUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MC2_ScolioSenseUITestsLaunchTests.swift; sourceTree = "<group>"; };
-
 		1E31ACD22C081F34006CB94D /* datamodelTry.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = datamodelTry.swift; sourceTree = "<group>"; };
 		1E31ACD52C0B0622006CB94D /* scolioMeterView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = scolioMeterView.swift; sourceTree = "<group>"; };
 		1E31ACDA2C0B0974006CB94D /* textHeading.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = textHeading.swift; sourceTree = "<group>"; };
@@ -70,7 +68,6 @@
 		1E7B56C22C0EB69B00339811 /* RecordManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecordManager.swift; sourceTree = "<group>"; };
 		EB72DC642C0ED427000E63A6 /* CobbsLine.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CobbsLine.swift; sourceTree = "<group>"; };
 		EB72DC662C0ED43C000E63A6 /* XRayScoliosis.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = XRayScoliosis.swift; sourceTree = "<group>"; };
-
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -517,7 +514,7 @@
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = "MC2-ScolioSense-Info.plist";
-				INFOPLIST_KEY_NSCameraUsageDescription = "";
+				INFOPLIST_KEY_NSCameraUsageDescription = "We need access to your camera";
 				INFOPLIST_KEY_NSPhotoLibraryAddUsageDescription = "We need access to your photo library to save processed images.";
 				INFOPLIST_KEY_NSPhotoLibraryUsageDescription = "We need access to your photo library to load images for processing.";
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
@@ -550,7 +547,7 @@
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = "MC2-ScolioSense-Info.plist";
-				INFOPLIST_KEY_NSCameraUsageDescription = "";
+				INFOPLIST_KEY_NSCameraUsageDescription = "We need access to your camera";
 				INFOPLIST_KEY_NSPhotoLibraryAddUsageDescription = "We need access to your photo library to save processed images.";
 				INFOPLIST_KEY_NSPhotoLibraryUsageDescription = "We need access to your photo library to load images for processing.";
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
