@@ -14,6 +14,7 @@
 		10D23CAD2BFD815E00A7C338 /* MC2_ScolioSenseTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 10D23CAC2BFD815E00A7C338 /* MC2_ScolioSenseTests.swift */; };
 		10D23CB72BFD815E00A7C338 /* MC2_ScolioSenseUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 10D23CB62BFD815E00A7C338 /* MC2_ScolioSenseUITests.swift */; };
 		10D23CB92BFD815E00A7C338 /* MC2_ScolioSenseUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 10D23CB82BFD815E00A7C338 /* MC2_ScolioSenseUITestsLaunchTests.swift */; };
+		10FAA7AC2C11EA33002AA495 /* ScanBodyPoseView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 10FAA7AB2C11EA33002AA495 /* ScanBodyPoseView.swift */; };
 		1E31ACD32C081F34006CB94D /* datamodelTry.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1E31ACD22C081F34006CB94D /* datamodelTry.swift */; };
 		1E31ACD62C0B0622006CB94D /* scolioMeterView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1E31ACD52C0B0622006CB94D /* scolioMeterView.swift */; };
 		1E31ACDB2C0B0974006CB94D /* textHeading.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1E31ACDA2C0B0974006CB94D /* textHeading.swift */; };
@@ -56,6 +57,7 @@
 		10D23CB22BFD815E00A7C338 /* MC2_ScolioSenseUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = MC2_ScolioSenseUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		10D23CB62BFD815E00A7C338 /* MC2_ScolioSenseUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MC2_ScolioSenseUITests.swift; sourceTree = "<group>"; };
 		10D23CB82BFD815E00A7C338 /* MC2_ScolioSenseUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MC2_ScolioSenseUITestsLaunchTests.swift; sourceTree = "<group>"; };
+		10FAA7AB2C11EA33002AA495 /* ScanBodyPoseView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScanBodyPoseView.swift; sourceTree = "<group>"; };
 		1E31ACD22C081F34006CB94D /* datamodelTry.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = datamodelTry.swift; sourceTree = "<group>"; };
 		1E31ACD52C0B0622006CB94D /* scolioMeterView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = scolioMeterView.swift; sourceTree = "<group>"; };
 		1E31ACDA2C0B0974006CB94D /* textHeading.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = textHeading.swift; sourceTree = "<group>"; };
@@ -162,6 +164,7 @@
 				1E31ACD22C081F34006CB94D /* datamodelTry.swift */,
 				1E7B56C02C0EB64A00339811 /* AngleRecord.swift */,
 				1E7B56C22C0EB69B00339811 /* RecordManager.swift */,
+				10FAA7AB2C11EA33002AA495 /* ScanBodyPoseView.swift */,
 			);
 			path = model;
 			sourceTree = "<group>";
@@ -334,6 +337,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				1E7B56C32C0EB69B00339811 /* RecordManager.swift in Sources */,
+				10FAA7AC2C11EA33002AA495 /* ScanBodyPoseView.swift in Sources */,
 				10D23C9C2BFD815C00A7C338 /* ContentView.swift in Sources */,
 				1E31ACD62C0B0622006CB94D /* scolioMeterView.swift in Sources */,
 				1E31ACDF2C0B0D96006CB94D /* button.swift in Sources */,
