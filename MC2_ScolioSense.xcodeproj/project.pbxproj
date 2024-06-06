@@ -15,6 +15,7 @@
 		10D23CAD2BFD815E00A7C338 /* MC2_ScolioSenseTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 10D23CAC2BFD815E00A7C338 /* MC2_ScolioSenseTests.swift */; };
 		10D23CB72BFD815E00A7C338 /* MC2_ScolioSenseUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 10D23CB62BFD815E00A7C338 /* MC2_ScolioSenseUITests.swift */; };
 		10D23CB92BFD815E00A7C338 /* MC2_ScolioSenseUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 10D23CB82BFD815E00A7C338 /* MC2_ScolioSenseUITestsLaunchTests.swift */; };
+		10D23CC82BFD868E00A7C338 /* ScanBodyPoseView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 10D23CC72BFD868E00A7C338 /* ScanBodyPoseView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -46,6 +47,8 @@
 		10D23CB22BFD815E00A7C338 /* MC2_ScolioSenseUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = MC2_ScolioSenseUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		10D23CB62BFD815E00A7C338 /* MC2_ScolioSenseUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MC2_ScolioSenseUITests.swift; sourceTree = "<group>"; };
 		10D23CB82BFD815E00A7C338 /* MC2_ScolioSenseUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MC2_ScolioSenseUITestsLaunchTests.swift; sourceTree = "<group>"; };
+		10D23CC72BFD868E00A7C338 /* ScanBodyPoseView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScanBodyPoseView.swift; sourceTree = "<group>"; };
+		10D23CC92BFD8F2700A7C338 /* MC2-ScolioSense-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = "MC2-ScolioSense-Info.plist"; sourceTree = SOURCE_ROOT; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -96,8 +99,10 @@
 		10D23C982BFD815C00A7C338 /* MC2_ScolioSense */ = {
 			isa = PBXGroup;
 			children = (
+				10D23CC92BFD8F2700A7C338 /* MC2-ScolioSense-Info.plist */,
 				10D23C992BFD815C00A7C338 /* MC2_ScolioSenseApp.swift */,
 				10D23C9B2BFD815C00A7C338 /* ContentView.swift */,
+				10D23CC72BFD868E00A7C338 /* ScanBodyPoseView.swift */,
 				10D23C9D2BFD815C00A7C338 /* Item.swift */,
 				10D23C9F2BFD815E00A7C338 /* Assets.xcassets */,
 				10D23CA12BFD815E00A7C338 /* Preview Content */,
@@ -262,6 +267,7 @@
 			files = (
 				10D23C9C2BFD815C00A7C338 /* ContentView.swift in Sources */,
 				10D23C9E2BFD815C00A7C338 /* Item.swift in Sources */,
+				10D23CC82BFD868E00A7C338 /* ScanBodyPoseView.swift in Sources */,
 				10D23C9A2BFD815C00A7C338 /* MC2_ScolioSenseApp.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -429,6 +435,10 @@
 				DEVELOPMENT_TEAM = NLFHS29F76;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = "MC2-ScolioSense-Info.plist";
+				INFOPLIST_KEY_NSCameraUsageDescription = "";
+				INFOPLIST_KEY_NSPhotoLibraryAddUsageDescription = "We need access to your photo library to save processed images.";
+				INFOPLIST_KEY_NSPhotoLibraryUsageDescription = "We need access to your photo library to load images for processing.";
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
@@ -458,6 +468,10 @@
 				DEVELOPMENT_TEAM = NLFHS29F76;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = "MC2-ScolioSense-Info.plist";
+				INFOPLIST_KEY_NSCameraUsageDescription = "";
+				INFOPLIST_KEY_NSPhotoLibraryAddUsageDescription = "We need access to your photo library to save processed images.";
+				INFOPLIST_KEY_NSPhotoLibraryUsageDescription = "We need access to your photo library to load images for processing.";
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
