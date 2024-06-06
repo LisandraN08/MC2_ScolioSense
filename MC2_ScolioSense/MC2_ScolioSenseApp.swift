@@ -12,7 +12,6 @@ import SwiftData
 struct MC2_ScolioSenseApp: App {
     var modelContainer: ModelContainer = {
         let schema = Schema([
-            Item.self,
         ])
         let modelConfiguration = ModelConfiguration(schema: schema, isStoredInMemoryOnly: false)
 
@@ -25,7 +24,8 @@ struct MC2_ScolioSenseApp: App {
 
     var body: some Scene {
         WindowGroup {
-            ScanBodyPoseView()
+            mainView()
+
         }
         .modelContainer(modelContainer)
     }

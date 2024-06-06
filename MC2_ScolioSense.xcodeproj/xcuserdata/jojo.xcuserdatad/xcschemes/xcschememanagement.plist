@@ -1,17 +1,14 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
 <plist version="1.0">
-
 <dict>
-	<key>CFBundleURLTypes</key>
-	<array>
+	<key>SchemeUserState</key>
+	<dict>
+		<key>MC2_ScolioSense.xcscheme_^#shared#^_</key>
 		<dict>
-			<key>CFBundleTypeRole</key>
-			<string>Editor</string>
+			<key>orderHint</key>
+			<integer>0</integer>
 		</dict>
-		<dict/>
-		<dict/>
-	</array>
+	</dict>
 </dict>
-
 </plist>
