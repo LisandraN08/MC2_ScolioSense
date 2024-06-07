@@ -109,7 +109,7 @@ struct mainView: View {
                                         
                                         HStack(spacing:5) {
                                             //Scan your Back
-                                            Text("X-ray Scan").font(.system(size: 22, weight: .medium, design: .rounded)).foregroundColor(Color(#colorLiteral(red: 0, green: 0, blue: 0, alpha: 0.7)))
+                                            Text("X-ray Scan").font(.system(size: 22, weight: .medium, design: .rounded)).foregroundColor(Color(#colorLiteral(red: 0, green: 0, blue: 0, alpha: 0.7)))noonotonoto
                                             
                                             Image(systemName: "chevron.right")
                                                 .resizable()
