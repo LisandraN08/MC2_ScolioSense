@@ -18,7 +18,7 @@ struct mainView: View {
                         Text("Hello, friends!")
                             .font(.system(size: 30, weight: .bold, design: .rounded))
                         Spacer()
-                    }.padding(.bottom,30)
+                    }.padding(.bottom,30).padding(.leading,10)
                     
                     VStack(spacing:20) {
                         
@@ -31,7 +31,7 @@ struct mainView: View {
                                 HStack(spacing:20) {
                                     HStack {
                                         Image("bodyscan")
-                                            .resizable()                .frame(width: 60, height: 60)
+                                            .resizable().frame(width: 60, height: 60)
                                             .offset(x:-15)
                                     }
                                     
@@ -101,13 +101,13 @@ struct mainView: View {
                                     .frame(width: 348, height: 119)
                                 HStack(spacing:0) {
                                     Image("xray")
-                                        .resizable()                .frame(width: 43, height: 44)
-                                        .offset(x:35)
+                                        .resizable().frame(width: 43, height: 44)
+                                        .offset(x:15)
                                     
                                     
                                     VStack(spacing:5) {
                                         
-                                        HStack(spacing:15) {
+                                        HStack(spacing:5) {
                                             //Scan your Back
                                             Text("X-ray Scan").font(.system(size: 22, weight: .medium, design: .rounded)).foregroundColor(Color(#colorLiteral(red: 0, green: 0, blue: 0, alpha: 0.7)))
                                             
@@ -115,13 +115,17 @@ struct mainView: View {
                                                 .resizable()
                                                 .frame(width: 8, height: 8)
                                                 .padding(.top,5)                  .foregroundColor(.black.opacity(0.7))
-                                            
-                                        }.padding(.leading,5)
+                                                .padding(.leading)
+                                        }.offset(x:5)
                                         
                                         //Analyze your spine posture
-                                        
-                                        Text("Measure the anteroposterior X-rays").font(.system(size: 13, weight: .regular, design: .rounded)).foregroundColor(Color(#colorLiteral(red: 0, green: 0, blue: 0, alpha: 0.7)))
-                                            .padding(.leading,80)
+                                        VStack(alignment: .leading) {
+                                            Text("Measure the anteroposterior").font(.system(size: 13, weight: .regular, design: .rounded)).foregroundColor(Color(#colorLiteral(red: 0, green: 0, blue: 0, alpha: 0.7)))
+                                                .padding(.leading,80)
+                                            Text("X-rays").font(.system(size: 13, weight: .regular, design: .rounded)).foregroundColor(Color(#colorLiteral(red: 0, green: 0, blue: 0, alpha: 0.7)))
+                                                .padding(.leading,80)
+                                            
+                                        }.offset(x:-20)
                                         
                                     }
                                 }
@@ -134,10 +138,11 @@ struct mainView: View {
                                 .font(.system(size: 24, weight: .bold, design: .rounded))
                             Spacer()
                         }.padding(.top,20)
-                        VStack {
+                        
+                        VStack(alignment:.leading) {
                             ForEach(records.reversed(), id: \.id) { record in
-                                HStack() {
-                                    HStack {
+                                VStack(alignment: .leading) {
+                                    HStack(spacing:50) {
                                         let recordAbs = abs(record.angle)
                                         if recordAbs <= 10 {
                                             
@@ -146,37 +151,50 @@ struct mainView: View {
                                                 RoundedRectangle(cornerSize: CGSize(width: 20, height: 20))
                                                     .fill(Color.green)
                                                     .opacity(0.3)
-                                                    .frame(width: 80, height: 30)
+                                                    .frame(width: 90, height: 30)
                                             }
+                                            
                                         } else if recordAbs < 20 {
                                             ZStack {
                                                 Text("Mild").opacity(0.7)
                                                 RoundedRectangle(cornerSize: CGSize(width: 20, height: 20))
                                                     .fill(Color.yellow)
                                                     .opacity(0.3)
-                                                    .frame(width: 80, height: 30)
-                                            }                                    } else if recordAbs < 40 {
-                                                ZStack {
-                                                    Text("Moderate").opacity(0.7)
-                                                    RoundedRectangle(cornerSize: CGSize(width: 20, height: 20))
-                                                        .fill(Color.orange)
-                                                        .opacity(0.3)
-                                                        .frame(width: 80, height: 30)
-                                                }
-                                            } else {
-                                                ZStack {
-                                                    Text("Severe").opacity(0.7)
-                                                    RoundedRectangle(cornerSize: CGSize(width: 20, height: 20))
-                                                        .fill(Color.red)
-                                                        .opacity(0.3)
-                                                        .frame(width: 80, height: 30)
-                                                }                                    }
-                                        Text("Angle: \(record.angle, specifier: "%.2f")°")
+                                                    .frame(width: 90, height: 30)
+                                            }
+                                        } else if recordAbs < 40 {
+                                            ZStack {
+                                                Text("Moderate").opacity(0.7)
+                                                RoundedRectangle(cornerSize: CGSize(width: 20, height: 20))
+                                                    .fill(Color.orange)
+                                                    .opacity(0.3)
+                                                    .frame(width: 90, height: 30)
+                                            }
+                                        } else {
+                                            ZStack {
+                                                Text("Severe").opacity(0.7)
+                                                RoundedRectangle(cornerSize: CGSize(width: 20, height: 20))
+                                                    .fill(Color.red)
+                                                    .opacity(0.3)
+                                                    .frame(width: 90, height: 30)
+                                            }  
+                                        }
+                                        VStack(alignment:.leading) {
+                                            Text("\(record.date, formatter: dateFormatter)")
+                                            
+                                            Text("\(record.angle, specifier: "%.2f")°")
+                                                .font(.system(size: 20)) // Increased font size
+                                        }
                                     }
-                                    Text("Date: \(record.date, formatter: dateFormatter)")
+//                                    VStack {
+//                                        Text("Date: \(record.date, formatter: dateFormatter)")
+//                                        Text("\(record.angle, specifier: "%.2f")°")
+//
+//                                    }
                                 }
-                                .padding()
-                                .frame(width: 350)
+                                .padding(.vertical,12)
+                                .padding(.horizontal)
+                                .frame(width: 350, height:70)
                                 .ignoresSafeArea(.all)
                                 .edgesIgnoringSafeArea(.all)
                                 .background(Color(hex: "81C9F3", transparency: 0.1))
@@ -189,8 +207,7 @@ struct mainView: View {
                                             }
                                         }
                                 )
-                                .padding(.horizontal)
-                                .padding(.vertical, 5)
+                          
                             }
                         }
                         
@@ -219,6 +236,8 @@ private let dateFormatter: DateFormatter = {
     let formatter = DateFormatter()
     formatter.dateStyle = .medium
     formatter.timeStyle = .medium
+    formatter.timeStyle = .none
+
     return formatter
 }()
 

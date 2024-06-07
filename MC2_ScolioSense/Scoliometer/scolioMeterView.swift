@@ -11,21 +11,24 @@ struct scolioMeterView: View {
     @State private var isPitchPaused = false
     @State private var showAlert = false
     var onSave: ((AngleRecord) -> Void)?
+    
+    @Environment(\.presentationMode) var presentationMode
 
+    
     var body: some View {
         ZStack {
             VStack (spacing: 120) {
                 HStack {
                     Spacer()
-                    button(text: "SUBMIT", width: 146, height: 49, font: 22, bgColor: isPitchPaused ? "BCE0F7" : "BCE0F7", bgTransparency: 1.0, fontColor: "000000", fontTransparency: 0.7, cornerRadius: 20) {
+                    button(text: "SUBMIT", width: 146, height: 49, font: 18, bgColor: isPitchPaused ? "BCE0F7" : "BCE0F7", bgTransparency: 1.0, fontColor: "000000", fontTransparency: 0.6, cornerRadius: 10) {
                         saveRecord()
-
+                        
                         showAlert = true
                         DispatchQueue.main.asyncAfter(deadline: .now() + 1) {
                             showAlert = false
                         }
                     }.rotationEffect(.degrees(-90))
-                }.offset(x: 50)
+                }.offset(x: 50, y:-18)
                 
                 HStack {
                     VStack(spacing:0) {
@@ -41,10 +44,10 @@ struct scolioMeterView: View {
                             .foregroundColor(getSeverityColor(for: motionDetector.slopeDegrees))
                             .frame(width:200)
                             .offset(x:30,y:-50)
-
+                        
                     }
                     .rotationEffect(.degrees(-90))
-
+                    
                     
                     Spacer()
                     ZStack {
@@ -60,20 +63,20 @@ struct scolioMeterView: View {
                                     Text("here")
                                         .rotationEffect(.degrees(-90))
                                 }.offset(x: -25)
-                            }.offset(x: 80)
+                            }.offset(x: 80, y:-35)
                         }
                     }
                 }
                 
                 HStack {
                     Spacer()
-//                    button(text: "XSUBMIT", width: 146, height: 49, font: 22, bgColor: "BCE0F7", bgTransparency: 1.0, fontColor: "000000", fontTransparency: 0.7, cornerRadius: 20) {
-//                        showAlert = true
-//                        DispatchQueue.main.asyncAfter(deadline: .now() + 1) {
-//                            showAlert = false
-//                        }
-//                    }
-
+                    //                    button(text: "XSUBMIT", width: 146, height: 49, font: 22, bgColor: "BCE0F7", bgTransparency: 1.0, fontColor: "000000", fontTransparency: 0.7, cornerRadius: 20) {
+                    //                        showAlert = true
+                    //                        DispatchQueue.main.asyncAfter(deadline: .now() + 1) {
+                    //                            showAlert = false
+                    //                        }
+                    //                    }
+                    
                 }
             }
             .padding(30)
@@ -87,7 +90,20 @@ struct scolioMeterView: View {
                     .offset(y: calculateOffset())
                     .animation(.easeInOut(duration: 0.5), value: motionDetector.slopeDegrees)
             }
-
+            VStack {
+                Spacer()
+                Button(action: {
+                    presentationMode.wrappedValue.dismiss()
+                }) {
+                    Image(systemName: "chevron.left")
+                        .resizable()
+                        .frame(width: 20, height: 20)
+                        .rotationEffect(.degrees(-90))
+                        .foregroundColor(Color.black)
+                        .opacity(0.8)
+                }
+            }.offset(x:-130)
+            
             if showAlert {
                 HStack {
                     CustomAlert(title: "Angle Saved", message: "", buttonText: "") {
@@ -98,12 +114,12 @@ struct scolioMeterView: View {
                 .transition(.opacity)
                 .animation(.easeInOut, value: showAlert)
             }
-        }
-        .onAppear {
-            motionDetector.startDeviceMotionUpdates()
-        }
+        }.navigationBarBackButtonHidden(true)
+            .onAppear {
+                motionDetector.startDeviceMotionUpdates()
+            }
     }
-
+    
     private func saveRecord() {
         let newRecord = AngleRecord(angle: motionDetector.slopeDegrees, date: Date())
         RecordManager.shared.saveRecord(newRecord)
@@ -119,17 +135,17 @@ struct scolioMeterView: View {
     
     private func getSeverityColor(for degrees: Double) -> Color {
         let absDegrees = abs(degrees)
-                switch absDegrees {
-                case 0..<10:
-                    return .green
-                case 10..<20:
-                    return .yellow
-                case 20..<40:
-                    return .orange
-                default:
-                    return .red
-                }
+        switch absDegrees {
+        case 0..<10:
+            return .green
+        case 10..<20:
+            return .yellow
+        case 20..<40:
+            return .orange
+        default:
+            return .red
         }
+    }
     
     private func getSeverityText(for degrees: Double) -> String {
         let absDegrees = abs(degrees)
@@ -143,7 +159,7 @@ struct scolioMeterView: View {
             return "Normal"
         }
         
-        }
+    }
 }
 
 private let dateFormatter: DateFormatter = {
