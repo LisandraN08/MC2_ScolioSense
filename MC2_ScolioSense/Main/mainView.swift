@@ -24,39 +24,39 @@ struct mainView: View {
                         
                         NavigationLink(destination: ScanBodyPoseView(onSave: { newRecord in
                             records.append(newRecord)})) {
-                            ZStack {
-                                RoundedRectangle(cornerRadius: 22)
-                                    .fill(Color(hex: "81C9F3", transparency: 0.5))
-                                    .frame(width: 348, height: 119)
-                                HStack(spacing:20) {
-                                    HStack {
-                                        Image("bodyscan")
-                                            .resizable().frame(width: 60, height: 60)
-                                            .offset(x:-15)
+                                ZStack {
+                                    RoundedRectangle(cornerRadius: 22)
+                                        .fill(Color(hex: "81C9F3", transparency: 0.5))
+                                        .frame(width: 348, height: 119)
+                                    HStack(spacing:20) {
+                                        HStack {
+                                            Image("bodyscan")
+                                                .resizable().frame(width: 60, height: 60)
+                                                .offset(x:-15)
+                                        }
+                                        
+                                        
+                                        VStack(spacing:5) {
+                                            
+                                            HStack(spacing:5) {
+                                                //Scan your Back
+                                                Text("Scan your Body").font(.system(size: 22, weight: .medium, design: .rounded)).foregroundColor(Color(#colorLiteral(red: 0, green: 0, blue: 0, alpha: 0.7)))
+                                                
+                                                Image(systemName: "chevron.right")
+                                                    .resizable()
+                                                    .frame(width: 8, height: 8)
+                                                    .padding(.top,5)                  .foregroundColor(.black.opacity(0.7))
+                                                
+                                            }.padding(.leading,5)
+                                            
+                                            //Analyze your spine posture
+                                            Text("Analyze your spine posture").font(.system(size: 13, weight: .regular, design: .rounded)).foregroundColor(Color(#colorLiteral(red: 0, green: 0, blue: 0, alpha: 0.7)))
+                                            
+                                        }
                                     }
                                     
-                                    
-                                    VStack(spacing:5) {
-                                        
-                                        HStack(spacing:5) {
-                                            //Scan your Back
-                                            Text("Scan your Body").font(.system(size: 22, weight: .medium, design: .rounded)).foregroundColor(Color(#colorLiteral(red: 0, green: 0, blue: 0, alpha: 0.7)))
-                                            
-                                            Image(systemName: "chevron.right")
-                                                .resizable()
-                                                .frame(width: 8, height: 8)
-                                                .padding(.top,5)                  .foregroundColor(.black.opacity(0.7))
-                                            
-                                        }.padding(.leading,5)
-                                        
-                                        //Analyze your spine posture
-                                        Text("Analyze your spine posture").font(.system(size: 13, weight: .regular, design: .rounded)).foregroundColor(Color(#colorLiteral(red: 0, green: 0, blue: 0, alpha: 0.7)))
-                                        
-                                    }
                                 }
-                                
                             }
-                        }
                         // scoliometer
                         NavigationLink(destination: scolioMeterView(onSave: { newRecord in
                             records.append(newRecord)
@@ -109,7 +109,7 @@ struct mainView: View {
                                         
                                         HStack(spacing:5) {
                                             //Scan your Back
-                                            Text("X-ray Scan").font(.system(size: 22, weight: .medium, design: .rounded)).foregroundColor(Color(#colorLiteral(red: 0, green: 0, blue: 0, alpha: 0.7)))noonotonoto
+                                            Text("X-ray Scan").font(.system(size: 22, weight: .medium, design: .rounded)).foregroundColor(Color(#colorLiteral(red: 0, green: 0, blue: 0, alpha: 0.7)))
                                             
                                             Image(systemName: "chevron.right")
                                                 .resizable()
@@ -137,87 +137,102 @@ struct mainView: View {
                             Text("Your latest record")
                                 .font(.system(size: 24, weight: .bold, design: .rounded))
                             Spacer()
-                        }.padding(.top,20)
+                        }
+                        .padding(.top, 20)
+                        .padding(.leading)
                         
-                        VStack(alignment:.leading) {
-                            ForEach(records.reversed(), id: \.id) { record in
+                        VStack {
+                            ZStack {
+                                RoundedRectangle(cornerRadius: 15)
+                                    .stroke(Color(hex: "81C9F3", transparency: 1.0), lineWidth: 1)
+                                    .frame(width: 345)
+                                    .padding()
+                                
                                 VStack(alignment: .leading) {
-                                    HStack(spacing:50) {
-                                        let recordAbs = abs(record.angle)
-                                        if recordAbs <= 10 {
-                                            
-                                            ZStack {
-                                                Text("Normal").opacity(0.7)
-                                                RoundedRectangle(cornerSize: CGSize(width: 20, height: 20))
-                                                    .fill(Color.green)
-                                                    .opacity(0.3)
-                                                    .frame(width: 90, height: 30)
+                                    ForEach(records.reversed(), id: \.id) { record in
+                                        VStack(alignment: .leading) {
+                                            HStack(spacing: 20) {
+                                                HStack {
+                                                    VStack(alignment: .leading, spacing: 7) {
+                                                        Text("\(record.date, formatter: dateFormatter)")
+                                                        Text("\(record.angle, specifier: "%.2f")°")
+                                                            .font(.system(size: 22))
+                                                            .fontWeight(.bold)
+                                                    }
+                                                    Spacer()
+                                                }
+                                                Spacer()
+                                                let recordAbs = abs(record.angle)
+                                                if recordAbs <= 10 {
+                                                    ZStack {
+                                                        Text("Normal").opacity(0.7)
+                                                        RoundedRectangle(cornerSize: CGSize(width: 20, height: 20))
+                                                            .fill(Color.green)
+                                                            .opacity(0.3)
+                                                            .frame(width: 100, height: 30)
+                                                    }
+                                                    
+                                                } else if recordAbs < 20 {
+                                                    ZStack {
+                                                        Text("Mild").opacity(0.7)
+                                                        RoundedRectangle(cornerSize: CGSize(width: 20, height: 20))
+                                                            .fill(Color.yellow)
+                                                            .opacity(0.3)
+                                                            .frame(width: 100, height: 30)
+                                                    }
+                                                } else if recordAbs < 40 {
+                                                    ZStack {
+                                                        Text("Moderate").opacity(0.7)
+                                                        RoundedRectangle(cornerSize: CGSize(width: 20, height: 20))
+                                                            .fill(Color.orange)
+                                                            .opacity(0.3)
+                                                            .frame(width: 100, height: 30)
+                                                    }
+                                                } else {
+                                                    ZStack {
+                                                        Text("Severe").opacity(0.7)
+                                                        RoundedRectangle(cornerSize: CGSize(width: 20, height: 20))
+                                                            .fill(Color.red)
+                                                            .opacity(0.3)
+                                                            .frame(width: 100, height: 30)
+                                                    }
+                                                }
+                                                
                                             }
-                                            
-                                        } else if recordAbs < 20 {
-                                            ZStack {
-                                                Text("Mild").opacity(0.7)
-                                                RoundedRectangle(cornerSize: CGSize(width: 20, height: 20))
-                                                    .fill(Color.yellow)
-                                                    .opacity(0.3)
-                                                    .frame(width: 90, height: 30)
-                                            }
-                                        } else if recordAbs < 40 {
-                                            ZStack {
-                                                Text("Moderate").opacity(0.7)
-                                                RoundedRectangle(cornerSize: CGSize(width: 20, height: 20))
-                                                    .fill(Color.orange)
-                                                    .opacity(0.3)
-                                                    .frame(width: 90, height: 30)
-                                            }
-                                        } else {
-                                            ZStack {
-                                                Text("Severe").opacity(0.7)
-                                                RoundedRectangle(cornerSize: CGSize(width: 20, height: 20))
-                                                    .fill(Color.red)
-                                                    .opacity(0.3)
-                                                    .frame(width: 90, height: 30)
-                                            }  
+                                            .padding(25)
+                                            .frame(width: 345)
+                                            .cornerRadius(8)
+                                            Rectangle() // Add a red line divider after each record
+                                                                                            .fill(Color.red)
+                                                                                            .frame(height: 1)
+                                         
                                         }
-                                        VStack(alignment:.leading) {
-                                            Text("\(record.date, formatter: dateFormatter)")
-                                            
-                                            Text("\(record.angle, specifier: "%.2f")°")
-                                                .font(.system(size: 20)) // Increased font size
-                                        }
+                                        .padding(.vertical, 12)
+                                        .padding(.horizontal)
+                                        .frame(width: 350, height: 70)
+                                        .cornerRadius(8)
+                                        .gesture(
+                                            DragGesture()
+                                                .onEnded { value in
+                                                    if value.translation.width < -100 {
+                                                        deleteRecord(record)
+                                                    }
+                                                }
+                                        )
                                     }
-//                                    VStack {
-//                                        Text("Date: \(record.date, formatter: dateFormatter)")
-//                                        Text("\(record.angle, specifier: "%.2f")°")
-//
-//                                    }
                                 }
-                                .padding(.vertical,12)
-                                .padding(.horizontal)
-                                .frame(width: 350, height:70)
-                                .ignoresSafeArea(.all)
-                                .edgesIgnoringSafeArea(.all)
-                                .background(Color(hex: "81C9F3", transparency: 0.1))
-                                .cornerRadius(8)
-                                .gesture(
-                                    DragGesture()
-                                        .onEnded { value in
-                                            if value.translation.width < -100 {
-                                                deleteRecord(record)
-                                            }
-                                        }
-                                )
-                          
+                                .padding()
                             }
                         }
                         
                         
                     }
                     Spacer()
-                }.padding()
-                    .onAppear {
-                        records = RecordManager.shared.fetchRecords()
-                    }
+                }
+                .padding()
+                .onAppear {
+                    records = RecordManager.shared.fetchRecords()
+                }
             }
         }
         
@@ -225,7 +240,7 @@ struct mainView: View {
     private func deleteRecord(_ record: AngleRecord) {
         if let index = records.firstIndex(where: { $0.id == record.id }) {
             records.remove(at: index)
-           
+            
         }
     }
     
@@ -237,10 +252,11 @@ private let dateFormatter: DateFormatter = {
     formatter.dateStyle = .medium
     formatter.timeStyle = .medium
     formatter.timeStyle = .none
-
+    
     return formatter
 }()
 
 #Preview {
+    
     mainView()
 }

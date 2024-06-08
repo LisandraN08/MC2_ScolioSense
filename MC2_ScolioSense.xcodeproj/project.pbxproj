@@ -25,6 +25,7 @@
 		1E7B56BF2C0D6B8400339811 /* mainView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1E7B56BE2C0D6B8400339811 /* mainView.swift */; };
 		1E7B56C12C0EB64A00339811 /* AngleRecord.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1E7B56C02C0EB64A00339811 /* AngleRecord.swift */; };
 		1E7B56C32C0EB69B00339811 /* RecordManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1E7B56C22C0EB69B00339811 /* RecordManager.swift */; };
+		1EE5B7542C1492490054D0DD /* cobaHistory.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1EE5B7532C1492490054D0DD /* cobaHistory.swift */; };
 		EB72DC652C0ED427000E63A6 /* CobbsLine.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB72DC642C0ED427000E63A6 /* CobbsLine.swift */; };
 		EB72DC672C0ED43C000E63A6 /* XRayScoliosis.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB72DC662C0ED43C000E63A6 /* XRayScoliosis.swift */; };
 /* End PBXBuildFile section */
@@ -68,6 +69,7 @@
 		1E7B56BE2C0D6B8400339811 /* mainView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = mainView.swift; sourceTree = "<group>"; };
 		1E7B56C02C0EB64A00339811 /* AngleRecord.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AngleRecord.swift; sourceTree = "<group>"; };
 		1E7B56C22C0EB69B00339811 /* RecordManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecordManager.swift; sourceTree = "<group>"; };
+		1EE5B7532C1492490054D0DD /* cobaHistory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = cobaHistory.swift; sourceTree = "<group>"; };
 		EB72DC642C0ED427000E63A6 /* CobbsLine.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CobbsLine.swift; sourceTree = "<group>"; };
 		EB72DC662C0ED43C000E63A6 /* XRayScoliosis.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = XRayScoliosis.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -193,6 +195,7 @@
 			isa = PBXGroup;
 			children = (
 				1E7B56BE2C0D6B8400339811 /* mainView.swift */,
+				1EE5B7532C1492490054D0DD /* cobaHistory.swift */,
 			);
 			path = Main;
 			sourceTree = "<group>";
@@ -339,6 +342,7 @@
 				1E7B56C32C0EB69B00339811 /* RecordManager.swift in Sources */,
 				10FAA7AC2C11EA33002AA495 /* ScanBodyPoseView.swift in Sources */,
 				10D23C9C2BFD815C00A7C338 /* ContentView.swift in Sources */,
+				1EE5B7542C1492490054D0DD /* cobaHistory.swift in Sources */,
 				1E31ACD62C0B0622006CB94D /* scolioMeterView.swift in Sources */,
 				1E31ACDF2C0B0D96006CB94D /* button.swift in Sources */,
 				1E7B56BF2C0D6B8400339811 /* mainView.swift in Sources */,
