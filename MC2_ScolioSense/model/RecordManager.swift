@@ -28,4 +28,13 @@ class RecordManager {
         }
         return []
     }
+    func deleteRecord(_ record: AngleRecord) {
+            var records = fetchRecords()
+            if let index = records.firstIndex(where: { $0.id == record.id }) {
+                records.remove(at: index)
+                if let encoded = try? JSONEncoder().encode(records) {
+                    UserDefaults.standard.set(encoded, forKey: userDefaultsKey)
+                }
+            }
+        }
 }

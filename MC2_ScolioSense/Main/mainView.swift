@@ -18,7 +18,7 @@ struct mainView: View {
                         Text("Hello, friends!")
                             .font(.system(size: 30, weight: .bold, design: .rounded))
                         Spacer()
-                    }.padding(.bottom,30).padding(.leading,10)
+                    }.padding(.bottom,30).padding(.leading,20)
                     
                     VStack(spacing:20) {
                         
@@ -52,7 +52,7 @@ struct mainView: View {
                                             //Analyze your spine posture
                                             Text("Analyze your spine posture").font(.system(size: 13, weight: .regular, design: .rounded)).foregroundColor(Color(#colorLiteral(red: 0, green: 0, blue: 0, alpha: 0.7)))
                                             
-                                        }
+                                        }.offset(x:-2)
                                     }
                                     
                                 }
@@ -68,7 +68,7 @@ struct mainView: View {
                                 Image(systemName: "ruler")
                                     .resizable()             .frame(width: 66, height: 31)
                                     .foregroundColor(Color(hex: "000000", transparency: 0.8))
-                                
+                                    .offset(x:5)
                                 
                                 VStack(spacing:5) {
                                     
@@ -86,7 +86,7 @@ struct mainView: View {
                                     //Analyze your spine posture
                                     Text("Measure the curve of your spine").font(.system(size: 13, weight: .regular, design: .rounded)).foregroundColor(Color(#colorLiteral(red: 0, green: 0, blue: 0, alpha: 0.7)))
                                     
-                                }
+                                }.padding(.leading,10)
                             }
                             
                         }
@@ -102,12 +102,12 @@ struct mainView: View {
                                 HStack(spacing:0) {
                                     Image("xray")
                                         .resizable().frame(width: 43, height: 44)
-                                        .offset(x:15)
+                                        .offset(x:13)
                                     
                                     
                                     VStack(spacing:5) {
                                         
-                                        HStack(spacing:5) {
+                                        HStack() {
                                             //Scan your Back
                                             Text("X-ray Scan").font(.system(size: 22, weight: .medium, design: .rounded)).foregroundColor(Color(#colorLiteral(red: 0, green: 0, blue: 0, alpha: 0.7)))
                                             
@@ -115,7 +115,7 @@ struct mainView: View {
                                                 .resizable()
                                                 .frame(width: 8, height: 8)
                                                 .padding(.top,5)                  .foregroundColor(.black.opacity(0.7))
-                                                .padding(.leading)
+                                                .padding(.leading).offset(x:-5)
                                         }.offset(x:5)
                                         
                                         //Analyze your spine posture
@@ -240,6 +240,7 @@ struct mainView: View {
     private func deleteRecord(_ record: AngleRecord) {
         if let index = records.firstIndex(where: { $0.id == record.id }) {
             records.remove(at: index)
+                    RecordManager.shared.deleteRecord(record)
             
         }
     }
