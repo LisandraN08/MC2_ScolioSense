@@ -219,7 +219,7 @@ struct mainView: View {
                                                     }
                                                 }
                                         )
-                                    }
+                                    }.padding(.top, 10)
                                 }
                                 .padding()
                             }
