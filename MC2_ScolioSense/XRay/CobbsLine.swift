@@ -106,6 +106,13 @@ struct CobbsLine: View {
                 
                 
                 HStack {
+                    button(text:"SUBMIT", width: 85, height:49, font: 15, bgColor: "BCE0F7", bgTransparency: 0.5 , fontColor:"000000", fontTransparency: 0.7, cornerRadius: 20){
+                        submitData()
+                        showAlert = true
+                        DispatchQueue.main.asyncAfter(deadline: .now() + 1) {
+                            showAlert = false
+                        }
+                    }
                     VStack(alignment: .leading) {
                         // Display Cobb's Angle
                         Text(String(format: "Cobb's Angle: %.2f°", cobbAngle))
@@ -116,14 +123,6 @@ struct CobbsLine: View {
                         Text(String(format: "Severity: \(cobbSeverity)"))
                             .foregroundColor(severityColor())
                             .frame(alignment: .leading)
-                    }
-                    
-                    button(text:"SUBMIT", width: 85, height:49, font: 15, bgColor: "BCE0F7", bgTransparency: 0.5 , fontColor:"000000", fontTransparency: 0.7, cornerRadius: 20){
-                        submitData()
-                        showAlert = true
-                        DispatchQueue.main.asyncAfter(deadline: .now() + 1) {
-                            showAlert = false
-                        }
                     }
                 }
             }
