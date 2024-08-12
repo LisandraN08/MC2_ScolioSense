@@ -66,7 +66,7 @@ struct XRayScoliosis: View {
                             .scaledToFill()
                             .frame(width: 330, height: 450)
                             .cornerRadius(10)
-                            .position(x:200,y:250)
+                            .offset(x:0,y:0)
                     }
                     VStack {
                         Spacer()
@@ -107,11 +107,12 @@ struct seeMoreSheetView: View {
                     Image("circle1")
                         .resizable(capInsets: /*@START_MENU_TOKEN@*/EdgeInsets()/*@END_MENU_TOKEN@*/)
                         .frame(width:50, height:50)
-                        .position(x:200,y:230)
+                        .offset(x:0,y:-10)
+                    // atas
                     Image("circle1")
                         .resizable(capInsets: /*@START_MENU_TOKEN@*/EdgeInsets()/*@END_MENU_TOKEN@*/)
                         .frame(width:50, height:50)
-                        .position(x:210,y:80)
+                        .offset(x:10,y:-180)
                 }
                 Text("1. Put the line onto the lower vertebrae that curves")
                     .frame(width: 300, alignment: .leading)
