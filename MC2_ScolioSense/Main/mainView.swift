@@ -9,15 +9,30 @@ import SwiftUI
 
 struct mainView: View {
     @State private var records: [AngleRecord] = []
+    @State private var infoOn = false
+    @Environment(\.openURL) var openURL
     
     var body: some View {
         NavigationView {
             ScrollView {
                 VStack {
                     HStack {
-                        Text("Hello, friends!")
+                        Text("ScolioSense")
                             .font(.system(size: 30, weight: .bold, design: .rounded))
+                            .onTapGesture {
+                                if let url = URL(string: "https://www.mayoclinic.org/diseases-conditions/scoliosis/diagnosis-treatment/drc-20350721") {
+                                    openURL(url)
+                                }
+                            }
                         Spacer()
+                        Button {
+                            infoOn.toggle()
+                        } label: {
+                            Image(systemName: "info.circle")
+                                .padding()
+                                .foregroundColor(Color(hex: "81C9F3", transparency: 1.0))
+                                .font(.system(size: 25))
+                        }
                     }.padding(.bottom,30).padding(.leading,20)
                     
                     VStack(spacing:20) {
@@ -141,87 +156,94 @@ struct mainView: View {
                         .padding(.top, 20)
                         .padding(.leading)
                         
-                        VStack {
-                            ZStack {
-                                RoundedRectangle(cornerRadius: 15)
-                                    .stroke(Color(hex: "81C9F3", transparency: 1.0), lineWidth: 1)
-                                    .frame(width: 345)
-                                    .padding()
-                                
-                                VStack(alignment: .leading) {
-                                    ForEach(records.reversed(), id: \.id) { record in
-                                        VStack(alignment: .leading) {
-                                            HStack(spacing: 20) {
-                                                HStack {
-                                                    VStack(alignment: .leading, spacing: 7) {
-                                                        Text("\(record.date, formatter: dateFormatter)")
-                                                        Text("\(record.angle, specifier: "%.2f")°")
-                                                            .font(.system(size: 22))
-                                                            .fontWeight(.bold)
+                        if records.isEmpty {
+                            Text("No records available.")
+                                .font(.system(size: 18, weight: .regular, design: .rounded))
+                                .foregroundColor(.gray)
+                                .padding()
+                        } else {
+                            VStack {
+                                ZStack {
+                                    RoundedRectangle(cornerRadius: 15)
+                                        .stroke(Color(hex: "81C9F3", transparency: 1.0), lineWidth: 1)
+                                        .frame(width: 345)
+                                        .padding()
+                                    
+                                    VStack(alignment: .leading) {
+                                        ForEach(records.reversed(), id: \.id) { record in
+                                            VStack(alignment: .leading) {
+                                                HStack(spacing: 20) {
+                                                    HStack {
+                                                        VStack(alignment: .leading, spacing: 7) {
+                                                            Text("\(record.date, formatter: dateFormatter)")
+                                                            Text("\(record.angle, specifier: "%.2f")°")
+                                                                .font(.system(size: 22))
+                                                                .fontWeight(.bold)
+                                                        }
+                                                        Spacer()
                                                     }
                                                     Spacer()
-                                                }
-                                                Spacer()
-                                                let recordAbs = abs(record.angle)
-                                                if recordAbs <= 10 {
-                                                    ZStack {
-                                                        Text("Normal").opacity(0.7)
-                                                        RoundedRectangle(cornerSize: CGSize(width: 20, height: 20))
-                                                            .fill(Color.green)
-                                                            .opacity(0.3)
-                                                            .frame(width: 100, height: 30)
+                                                    let recordAbs = abs(record.angle)
+                                                    if recordAbs <= 10 {
+                                                        ZStack {
+                                                            Text("Normal").opacity(0.7)
+                                                            RoundedRectangle(cornerSize: CGSize(width: 20, height: 20))
+                                                                .fill(Color.green)
+                                                                .opacity(0.3)
+                                                                .frame(width: 100, height: 30)
+                                                        }
+                                                        
+                                                    } else if recordAbs < 20 {
+                                                        ZStack {
+                                                            Text("Mild").opacity(0.7)
+                                                            RoundedRectangle(cornerSize: CGSize(width: 20, height: 20))
+                                                                .fill(Color.yellow)
+                                                                .opacity(0.3)
+                                                                .frame(width: 100, height: 30)
+                                                        }
+                                                    } else if recordAbs < 40 {
+                                                        ZStack {
+                                                            Text("Moderate").opacity(0.7)
+                                                            RoundedRectangle(cornerSize: CGSize(width: 20, height: 20))
+                                                                .fill(Color.orange)
+                                                                .opacity(0.3)
+                                                                .frame(width: 100, height: 30)
+                                                        }
+                                                    } else {
+                                                        ZStack {
+                                                            Text("Severe").opacity(0.7)
+                                                            RoundedRectangle(cornerSize: CGSize(width: 20, height: 20))
+                                                                .fill(Color.red)
+                                                                .opacity(0.3)
+                                                                .frame(width: 100, height: 30)
+                                                        }
                                                     }
                                                     
-                                                } else if recordAbs < 20 {
-                                                    ZStack {
-                                                        Text("Mild").opacity(0.7)
-                                                        RoundedRectangle(cornerSize: CGSize(width: 20, height: 20))
-                                                            .fill(Color.yellow)
-                                                            .opacity(0.3)
-                                                            .frame(width: 100, height: 30)
-                                                    }
-                                                } else if recordAbs < 40 {
-                                                    ZStack {
-                                                        Text("Moderate").opacity(0.7)
-                                                        RoundedRectangle(cornerSize: CGSize(width: 20, height: 20))
-                                                            .fill(Color.orange)
-                                                            .opacity(0.3)
-                                                            .frame(width: 100, height: 30)
-                                                    }
-                                                } else {
-                                                    ZStack {
-                                                        Text("Severe").opacity(0.7)
-                                                        RoundedRectangle(cornerSize: CGSize(width: 20, height: 20))
-                                                            .fill(Color.red)
-                                                            .opacity(0.3)
-                                                            .frame(width: 100, height: 30)
-                                                    }
                                                 }
+                                                .padding(25)
+                                                .frame(width: 345)
+                                                .cornerRadius(8)
+                                                Rectangle() // Add a red line divider after each record
+                                                    .fill(Color.red)
+                                                    .frame(height: 1)
                                                 
                                             }
-                                            .padding(25)
-                                            .frame(width: 345)
+                                            .padding(.vertical, 12)
+                                            .padding(.horizontal)
+                                            .frame(width: 350, height: 70)
                                             .cornerRadius(8)
-                                            Rectangle() // Add a red line divider after each record
-                                                                                            .fill(Color.red)
-                                                                                            .frame(height: 1)
-                                         
-                                        }
-                                        .padding(.vertical, 12)
-                                        .padding(.horizontal)
-                                        .frame(width: 350, height: 70)
-                                        .cornerRadius(8)
-                                        .gesture(
-                                            DragGesture()
-                                                .onEnded { value in
-                                                    if value.translation.width < -100 {
-                                                        deleteRecord(record)
+                                            .gesture(
+                                                DragGesture()
+                                                    .onEnded { value in
+                                                        if value.translation.width < -100 {
+                                                            deleteRecord(record)
+                                                        }
                                                     }
-                                                }
-                                        )
-                                    }.padding(.top, 10)
+                                            )
+                                        }.padding(.top, 10)
+                                    }
+                                    .padding()
                                 }
-                                .padding()
                             }
                         }
                         
@@ -232,6 +254,27 @@ struct mainView: View {
                 .padding()
                 .onAppear {
                     records = RecordManager.shared.fetchRecords()
+                    print(infoOn)
+                }
+                .sheet(isPresented: $infoOn) {
+                    VStack {
+                        HStack {
+                            Spacer()
+                            Text("Instructions for use").fontWeight(.bold)
+                            Spacer()
+                        }.padding()
+                        Text("""
+1. This software can be used to automatically and intelligently measure the cobb angle of scoliosis. As long as a qualified positive X-ray of the whole spine is uploaded as shown in the figure below, the cobb angle can be automatically obtained within 2 seconds.
+
+ 2. It is recommended to take a positive X-ray of the whole spine to avoid creases, image tilt, etc. when uploading images.
+
+ 3. The accuracy of cobb angle measurement in this program is >95%. When the curved arc is short, there are irregular and multiple bends, the perietal vertebrae above the chest 5 or lower than 3 in the waist, the rotation is large, and the quality of the uploaded image picture is not high (such as tilting, underlined, creases, etc.).
+
+ 4. Users can measure the average value 3 times to improve the accuracy. The measurement results are for users' reference only. The specific meaning needs to be interpreted in conjunction with professionals.
+
+ 5. After automatic measurement, you can also manually drag the end vertebrae to correct the cobb angle.
+""").padding()
+                    }
                 }
             }
         }
@@ -240,7 +283,7 @@ struct mainView: View {
     private func deleteRecord(_ record: AngleRecord) {
         if let index = records.firstIndex(where: { $0.id == record.id }) {
             records.remove(at: index)
-                    RecordManager.shared.deleteRecord(record)
+            RecordManager.shared.deleteRecord(record)
             
         }
     }
